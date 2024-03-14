@@ -150,7 +150,7 @@
 
             
             <div class="links">
-                    <a href="/esqueceu-senha">Esqueceu a Senha?</a>
+                    <a href="esqueceuSenha">Esqueceu a Senha?</a>
                 </div>
 
         </div>

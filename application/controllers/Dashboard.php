@@ -19,4 +19,9 @@ class Dashboard extends CI_Controller
 	{
 		$this->load->view('home'); // Carrega a visualização para a página de criar conta
 	}
+
+	public function esqueceuSenha()
+	{
+		$this->load->view('esqueceuSenha'); // Carrega a visualização para a página de criar conta
+	}
 }
