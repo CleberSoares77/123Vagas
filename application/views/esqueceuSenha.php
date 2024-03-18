@@ -65,6 +65,7 @@
     </style>
 </head>
 <body>
+    
     <div class="container">
         <h1>Recuperação de Senha</h1>
         <p>Digite seu endereço de e-mail</p>
@@ -72,6 +73,11 @@
             <input type="email" name="email" placeholder="Seu endereço de e-mail" required>
             <br>
             <input type="submit" value="Enviar">
+
+            
+            <div class="link">
+                    <a href="/">Voltar</a>
+                </div>
         </form>
     </div>
 </body>
