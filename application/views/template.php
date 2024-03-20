@@ -11,7 +11,8 @@
 
 <div class="container">
 	<!-- MENU -->
-	<p><a href="<?= base_url('login'); ?>">Login</a> | <a href="<?= base_url('cadastro-usuario'); ?>">Cadastro usuário</a> | <a href="<?= base_url('cadastro-empresa'); ?>">Cadastro empress</a></p>
+	<p><a href="<?= base_url('login'); ?>">Login</a> | <a href="<?= base_url('cadastro-usuario');
+	  ?>">Cadastro usuário</a> | <a href="<?= base_url('cadastro-empresa'); ?>">Cadastro empresa</a></p>
 
 	<!-- CONTEÚDO -->
 	<?= $contents; ?>

@@ -21,13 +21,6 @@ class System extends CI_Controller
 
 	public function cadastro_usuario()
 	{
-		if($_SERVER['REQUEST_METHOD'] == 'POST')
-		{
-			$usuario = $this->input->post('usuario');
-
-			echo "Nome do usuário é " . $usuario;
-		}
-
 		$this->template->load('template', 'cadastro-usuario');
 	}
 }
