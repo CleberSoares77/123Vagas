@@ -14,6 +14,11 @@ class System extends CI_Controller
 		$this->template->load('template', 'login');
 	}
 
+	public function home()
+	{
+		$this->template->load('template', 'home');
+	}
+
 	public function cadastro_empresa()
 	{
 		$this->template->load('template', 'cadastro-empresa');
@@ -22,5 +27,10 @@ class System extends CI_Controller
 	public function cadastro_usuario()
 	{
 		$this->template->load('template', 'cadastro-usuario');
+	}
+
+	public function esqueceu_senha()
+	{
+		$this->template->load('template', 'esqueceu-senha');
 	}
 }

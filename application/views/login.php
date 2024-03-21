@@ -17,7 +17,7 @@
                 <h1>Login</h1>
             </div>
 
-            <form action="<?php echo base_url('dashboard/home'); ?>" method="post" class="row"> <!-- Definindo a action para redirecionar para outra página -->
+            <form action="<?php echo base_url('home'); ?>" method="post" class="row"> <!-- Definindo a action para redirecionar para outra página -->
                 <div class="mb-3 col-12">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Digite o e-mail" aria-describedby="emailHelp" required>

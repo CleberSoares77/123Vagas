@@ -57,5 +57,9 @@ $route['cadastro-empresa'] = 'system/cadastro_empresa';
 
 $route['cadastro-usuario'] = 'system/cadastro_usuario';
 
+$route['esqueceu-senha'] = 'system/esqueceu_senha';
+
+$route['home'] = 'system/home';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
