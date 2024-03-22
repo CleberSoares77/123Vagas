@@ -1,61 +1,77 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-
-<!doctype html>
-<html lang="pt-br">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <title>W3.CSS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-
 <body>
-    <div class="container">
-        <div class="login-container">
-            <div class="mb-3 col">
-                <h1>Login</h1>
-            </div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <div class="Menu" aria-labelledby="navbarDropdown">
-                                <a class="1" href="#">Ação</a>
-                                <a class="2" href="#">Outra ação</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="3" href="#">Algo mais aqui</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Desativado</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-                    </form>
-                </div>
-            </nav>
+  <!-- Sidebar -->
+  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:7%">
+    <h3 class="w3-bar-item">Menu</h3>
+    <a href="#" class="w3-bar-item w3-button">Inicio</a>
+    <a href="#" class="w3-bar-item w3-button">Painel</a>
+    <a href="#" class="w3-bar-item w3-button">Pedidos</a>
+    <a href="#" class="w3-bar-item w3-button">Itens</a>
+    <a href="#" class="w3-bar-item w3-button">Usuário</a>
+  </div>
 
-        </div>
+  <!-- Page Content -->
+  <div style="margin-left:8%">
+
+    <div class="w3-container w3-teal">
+      <h1>SOSVagas</h1>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+    <main role="main">
+      <!-- Principal jumbotron, para a principal mensagem de marketing ou call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Olá, mundo!</h1>
+          <p>Olá, sou Cléber</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Saiba mais &raquo;</a></p>
+        </div>
+      </div>
 
+      <div class="container">
+        <!-- Exemplo de linha de colunas -->
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Título</h2>
+            <p><a class="btn btn-secondary" href="#" role="button">Ver detalhes &raquo;</a></p>
+          </div>
+          <div class="col-md-4">
+            <h2>Título</h2>
+            <p><a class="btn btn-secondary" href="#" role="button">Ver detalhes &raquo;</a></p>
+          </div>
+          <div class="col-md-4">
+            <h2>Título</h2>
+            <p><a class="btn btn-secondary" href="#" role="button">Ver detalhes &raquo;</a></p>
+          </div>
+        </div>
+
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!--<img src="img_car.jpg" alt="Car" style="width:100%">--->
+
+    <div class="w3-container">
+
+    </div>
+
+  </div>
+
+</body>
 </html>
