@@ -16,7 +16,7 @@ class System extends CI_Controller
 
 	public function home()
 	{
-		$this->template->load('template', 'home');
+		$this->load->view('home');
 	}
 
 	public function cadastro_empresa()
