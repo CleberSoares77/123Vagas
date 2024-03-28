@@ -1,69 +1,35 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
-    <style>
-        
-        .link {
-            margin-top: 20px;
-            font-size: 16px;
-            text-align: right;
-            /* Alinha o texto do link à direita */
-        }
-        input {
-            width: 40%; /* Alterado para ocupar 100% da largura da div */
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-            display: inline-block;
-        }
-
-
-    </style>
-
-</head>
-
-<body>
-
-    <div class="container">
+<div class="container">
         <h1>Cadastro de Usuário</h1>
         <div class="form-box">
-            <form id="cadastro-usuario" method="POST">
+            <form method="post" action="<?= base_url('usuario/cadastro'); ?>">
                 <div class="mb-3 col-12">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" id="nome" name="nome" >
                 </div>
 
                 <div class="mb-3 col-12">
                     <label for="sobrenome">Sobrenome:</label>
-                    <input type="text" id="sobrenome" name="sobrenome" required>
+                    <input type="text" id="sobrenome" name="sobrenome" >
                 </div>
 
                 <div class="mb-3 col-12">
                     <label for="contato">Contato:</label>
-                    <input type="number" id="contato" name="contato" required>
+                    <input type="number" id="contato" name="contato" >
                 </div>
 
                 <div class="mb-3 col-12">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" >
                 </div>
 
                 <div class="mb-3 col-12">
                     <label for="dataNasc">Data de Nascimento:</label>
-                    <input type="date" id="dataNasc" name="dataNasc" required>
+                    <input type="date" id="dataNasc" name="dataNasc" >
                 </div>
 
                 <div class="mb-3 col-12">
                     <label for="genero">Gênero:</label>
-                    <select id="genero" name="genero" required>
+                    <select id="genero" name="genero" >
                         <option value="">Selecione</option>
                         <option value="masculino">Masculino</option>
                         <option value="feminino">Feminino</option>
@@ -73,12 +39,12 @@
 
                 <div class="mb-3 col-12">
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required>
+                    <input type="password" id="senha" name="senha" >
                 </div>
 
                 <div class="mb-3 col-12">
                     <label for="confirmaSenha">Confirmar Senha:</label>
-                    <input type="password" id="confirmaSenha" name="confirmaSenha" required>
+                    <input type="password" id="confirmaSenha" name="confirmaSenha" >
                 </div>
 
                 <div class="link">
@@ -117,6 +83,3 @@
             });
         });
     </script>
-</body>
-
-</html>

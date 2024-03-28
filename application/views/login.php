@@ -30,7 +30,7 @@
                     <button type="submit" class="btn btn-primary mb-2">Entrar</button>
                 </div>
                 <div class="mb-3 col">
-                <a href="<?php echo base_url('dashboard/form'); ?>" class="btn btn-success">Criar Conta</a> 
+                <a href="<?php echo base_url('usuario/cadastro'); ?>" class="btn btn-success">Criar Conta</a> 
                 </div>
             </form>
         </div>
