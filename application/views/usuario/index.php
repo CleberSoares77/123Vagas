@@ -43,11 +43,11 @@
         echo '<td>'.$usuario->sobrenome.'</td>';
         echo '<td>'.$usuario->contato.'</td>';
         echo '<td>'.$usuario->email.'</td>';
-        echo '<td>'.$usuario->dataNasc.'</td>';
+        echo '<td>'.date('d/m/Y', strtotime($usuario->dataNasc)).'</td>';
         echo '<td>'.$usuario->genero.'</td>';
         echo '<td>'.$usuario->senha.'</td>';
-        echo '<td><a href="usuario/editar?id='.$usuario->id.'">Editar</a></td>';
-        echo '<td><a href="usuario/excluir?id='.$usuario->id.'">Excluir</a></td>';
+        echo '<td><a href="usuario/editar/'.$usuario->id.'">Editar</a></td>';
+        echo '<td><a href="usuario/excluir/'.$usuario->id.'">Excluir</a></td>';
         echo '</tr>';
     }
     ?>
