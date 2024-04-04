@@ -1,10 +1,8 @@
-<h5>INDEX - LISTAR - EMPRESA</h5>
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
  <meta charset="UTF-8">
- <title>Tabela de Usuários</title>
+ <title>Tabela de Empresas</title>
  <style>
    table {
      border-collapse: collapse;
@@ -25,11 +23,9 @@
        <tr>
            <th>ID</th>
            <th>Nome</th>
-           <th>Sobrenome</th>
+           <th>CNPJ</th>
            <th>Contato</th>
            <th>Email</th>
-           <th>Data de Nascimento</th>
-           <th>Gênero</th>
            <th>Senha</th>
            <th>Editar</th>
            <th>Excluir</th>
@@ -37,19 +33,17 @@
    </thead>
    <tbody>
     <?php
-    foreach($usuarios as $usuario)
+    foreach($empresas as $empresa)
     {
         echo '<tr>';
-        echo '<td>'.$usuario->id.'</td>';
-        echo '<td>'.$usuario->nome.'</td>';
-        echo '<td>'.$usuario->sobrenome.'</td>';
-        echo '<td>'.$usuario->contato.'</td>';
-        echo '<td>'.$usuario->email.'</td>';
-        echo '<td>'.date('d/m/Y', strtotime($usuario->dataNasc)).'</td>';
-        echo '<td>'.$usuario->genero.'</td>';
-        echo '<td>'.$usuario->senha.'</td>';
-        echo '<td><a href="usuario/editar/'.$usuario->id.'">Editar</a></td>';
-        echo '<td><a href="usuario/excluir/'.$usuario->id.'">Excluir</a></td>';
+        echo '<td>'.$empresa->id.'</td>';
+        echo '<td>'.$empresa->nome.'</td>';
+        echo '<td>'.$empresa->cnpj.'</td>';
+        echo '<td>'.$empresa->contato.'</td>';
+        echo '<td>'.$empresa->email.'</td>';
+        echo '<td>'.$empresa->senha.'</td>';
+        echo '<td><a href="empresa/editar_empresa/'.$empresa->id.'">Editar</a></td>';
+        echo '<td><a href="empresa/excluir_empresa/'.$empresa->id.'">Excluir</a></td>';
         echo '</tr>';
     }
     ?>

@@ -27,7 +27,7 @@ class Empresa_model extends CI_Model {
 
 	public function delete_empresa($id) {
 		$this->db->where("id", $id);
-		return $this->db->delete("cadastro_usuario");
+		return $this->db->delete("cadastro_empresa");
     }
 
 

@@ -12,7 +12,7 @@ class Empresa extends CI_Controller
 
 	public function index()
 	{
-		$data['empresa'] = $this->Empresa_model->listar();
+		$data['empresas'] = $this->Empresa_model->listar_empresa();
 
 		$this->template->load('template', 'empresa/index', $data);
 	}
@@ -24,11 +24,9 @@ class Empresa extends CI_Controller
 		{
 			$data = [
 				'nome' => $this->input->post('nome'),
-				'sobrenome' => $this->input->post('sobrenome'),
+				'cnpj' => $this->input->post('cnpj'),
 				'contato' => $this->input->post('contato'),
 				'email' => $this->input->post('email'),
-				'dataNasc' => $this->input->post('dataNasc'),
-				'genero' => $this->input->post('genero'),
 				'senha' => $this->input->post('senha')
 			];
 			
@@ -43,26 +41,21 @@ class Empresa extends CI_Controller
 			}
 		}
 
-		$this->template->load('template', 'empresa/cadastro');
+		$this->template->load('template', 'empresa/cadastro_empresa');
 	}
 
-	public function editar($id)
+	public function editar_empresa($id)
 	{
 		$_SERVER['REQUEST_METHOD'] == 'POST';
 
-		$data['empresa'] = $this->Empresa_model->edit($id);
+		$data['empresa'] = $this->Empresa_model->edit_empresa($id);
 
+		$this->template->load('template', 'empresa/cadastro_empresa', $data);
 
-		$this->template->load('template', 'empresa/cadastro', $data);
-
-		/*print "<pre>";
-		print_r($data);
-		print "</pre>";
-		exit();*/
 		
 	}
 
-	public function update($id = null)
+	public function update_empresa($id = null)
 	{
 		// Verifique se o ID foi fornecido
 		if ($id === null) {
@@ -76,16 +69,14 @@ class Empresa extends CI_Controller
 			// Assumindo que você tem dados do formulário em $_POST, recupere-os
 			$data = [
 				'nome' => $this->input->post('nome'),
-				'sobrenome' => $this->input->post('sobrenome'),
+				'cnpj' => $this->input->post('cnpj'),
 				'contato' => $this->input->post('contato'),
 				'email' => $this->input->post('email'),
-				'dataNasc' => $this->input->post('dataNasc'),
-				'genero' => $this->input->post('genero'),
 				'senha' => $this->input->post('senha')
 			];
 	
 			// Chame o método update do Usuario_model com dados e ID
-			$this->Empresa_model->update($id, $data);
+			$this->Empresa_model->update_empresa($id, $data);
 	
 			// Redirecione após a atualização bem-sucedida
 			redirect("empresa");
@@ -98,9 +89,9 @@ class Empresa extends CI_Controller
 	
 	
 
-	public function excluir($id)
+	public function excluir_empresa($id)
 	{
-		$this->Usuario_model->delete($id);
+		$this->Empresa_model->delete_empresa($id);
 		echo "Deletou";
 	}
 }
