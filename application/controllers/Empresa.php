@@ -17,6 +17,12 @@ class Empresa extends CI_Controller
 		$this->template->load('template', 'empresa/index', $data);
 	}
 
+	public function home_empresa()
+	{
+		
+		$this->load->view( 'home_empresa');
+	}
+
 
 	public function cadastro_empresa()
 	{

@@ -17,6 +17,11 @@ class Usuario extends CI_Controller
 		$this->template->load('template', 'usuario/index', $data);
 	}
 
+	public function home_usuario()
+	{
+
+		$this->load->view( 'home_usuario');
+	}
 
 	public function cadastro()
 	{

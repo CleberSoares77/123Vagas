@@ -7,4 +7,5 @@ class Login extends CI_Controller
 	{
 		$this->template->load('template', 'index');
 	}
+	
 }
