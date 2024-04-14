@@ -23,6 +23,12 @@ class Usuario extends CI_Controller
 		$this->load->view( 'home_usuario');
 	}
 
+	public function esqueceu_senha()
+	{
+
+		$this->load->view( 'esqueceu_senha');
+	}
+
 	public function cadastro()
 	{
 		if($_SERVER['REQUEST_METHOD'] == 'POST')

@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="login" class="btn btn-primary btnLoginSubmit" value="Login" />
-                                        <a href="esqueceu_senha" class="btn btn-link text-white btnForgetPwd">Esqueceu senha do usuário?</a>
+                                        <a href="usuario/esqueceu_senha" class="btn btn-link text-white btnForgetPwd">Esqueceu senha do usuário?</a>
                                     </div>
                                 </form>
                             </div>
@@ -121,7 +121,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="login1" class="btn btn-primary btnLoginSubmit" value="Login" />
-                                        <a href="esqueceu_senha" class="btn btn-link text-white btnForgetPwd">Esqueceu senha da empresa?</a>
+                                        <a class="btn btn-link text-white btnForgetPwd">Esqueceu senha da empresa?</a>
                                     </div>
                                 </form>
                             </div>
@@ -166,4 +166,3 @@ $(document).ready(function(){
 });
 
 </script>
-
