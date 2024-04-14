@@ -20,7 +20,7 @@ class Usuario extends CI_Controller
 	public function home_usuario()
 	{
 
-		$this->load->view( 'home_usuario');
+		$this->load->view( 'usuario/home_usuario');
 	}
 
 	public function esqueceu_senha()

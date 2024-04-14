@@ -20,7 +20,7 @@ class Empresa extends CI_Controller
 	public function home_empresa()
 	{
 		
-		$this->load->view( 'home_empresa');
+		$this->load->view( 'empresa/home_empresa');
 	}
 
 
