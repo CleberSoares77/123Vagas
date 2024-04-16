@@ -140,29 +140,61 @@
 
 <script>
 $(document).ready(function(){
+    // Autenticação do usuário
     $("#formUsuario").submit(function(event){
         event.preventDefault(); // Evita o envio padrão do formulário
         
         // Aqui você pode adicionar qualquer lógica de validação do formulário, se necessário
         
-        // Redireciona o usuário para a página de início do controlador Usuario
-        window.location.href = "<?php echo base_url('usuario/home_usuario'); ?>";
+        // Simulação de autenticação bem-sucedida para usuário
+        var email = $("input[name='email']").val();
+        var senha = $("input[name='senha']").val();
+        // Supondo que você tenha uma função para verificar o login do usuário
+        if (validarUsuario(email, senha)) {
+            // Redireciona o usuário para a página de início do controlador Usuario
+            window.location.href = "<?php echo base_url('usuario/home_usuario'); ?>";
+        } else {
+            alert("Credenciais inválidas. Por favor, tente novamente.");
+        }
     });
-});
 
-</script>
-
-<script>
-
-$(document).ready(function(){
+    // Autenticação da empresa
     $("#formEmpresa").submit(function(event){
         event.preventDefault(); // Evita o envio padrão do formulário
         
         // Aqui você pode adicionar qualquer lógica de validação do formulário, se necessário
         
-        // Redireciona o usuário para a página de início do controlador Usuario
-        window.location.href = "<?php echo base_url('empresa/home_empresa'); ?>";
+        // Simulação de autenticação bem-sucedida para empresa
+        var email = $("input[name='email1']").val();
+        var senha = $("input[name='senha1']").val();
+        // Supondo que você tenha uma função para verificar o login da empresa
+        if (validarEmpresa(email, senha)) {
+            // Redireciona o usuário para a página de início do controlador Empresa
+            window.location.href = "<?php echo base_url('empresa/home_empresa'); ?>";
+        } else {
+            alert("Credenciais inválidas. Por favor, tente novamente.");
+        }
     });
-});
 
+    // Função de validação simulada do usuário (substitua por sua própria lógica)
+    function validarUsuario(email, senha) {
+        // Simulação de autenticação bem-sucedida
+        if (email === "usuario@example.com" && senha === "senhausuario") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Função de validação simulada da empresa (substitua por sua própria lógica)
+    function validarEmpresa(email, senha) {
+        // Simulação de autenticação bem-sucedida
+        if (email === "empresa@example.com" && senha === "senhaempresa") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+});
 </script>
+ 

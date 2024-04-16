@@ -20,19 +20,18 @@ class Usuario extends CI_Controller
 	public function home_usuario()
 	{
 
-		$this->load->view( 'usuario/home_usuario');
+		$this->load->view('usuario/home_usuario');
 	}
 
 	public function esqueceu_senha()
 	{
 
-		$this->load->view( 'esqueceu_senha');
+		$this->load->view('esqueceu_senha');
 	}
 
 	public function cadastro()
 	{
-		if($_SERVER['REQUEST_METHOD'] == 'POST')
-		{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$data = [
 				'nome' => $this->input->post('nome'),
 				'sobrenome' => $this->input->post('sobrenome'),
@@ -42,14 +41,11 @@ class Usuario extends CI_Controller
 				'genero' => $this->input->post('genero'),
 				'senha' => $this->input->post('senha')
 			];
-			
+
 			// Efetua o cadastro e valida se foi cadastrado
-			if($this->Usuario_model->cadastrar($data))
-			{
+			if ($this->Usuario_model->cadastrar($data)) {
 				echo 'Cadastrou';
-			}
-			else
-			{
+			} else {
 				echo 'Ocorreu um erro ao cadastrar';
 			}
 		}
@@ -70,7 +66,6 @@ class Usuario extends CI_Controller
 		print_r($data);
 		print "</pre>";
 		exit();*/
-		
 	}
 
 	public function update($id = null)
@@ -81,7 +76,7 @@ class Usuario extends CI_Controller
 			echo "ID não fornecido.";
 			return;
 		}
-	
+
 		// Verifique se o método de solicitação é POST
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Assumindo que você tem dados do formulário em $_POST, recupere-os
@@ -94,10 +89,10 @@ class Usuario extends CI_Controller
 				'genero' => $this->input->post('genero'),
 				'senha' => $this->input->post('senha')
 			];
-	
+
 			// Chame o método update do Usuario_model com dados e ID
 			$this->Usuario_model->update($id, $data);
-	
+
 			// Redirecione após a atualização bem-sucedida
 			redirect("usuario");
 		} else {
@@ -106,12 +101,37 @@ class Usuario extends CI_Controller
 			return;
 		}
 	}
-	
-	
 
 	public function excluir($id)
 	{
 		$this->Usuario_model->delete($id);
 		echo "Deletou";
 	}
+
+	public function autentica_usuario()
+	{
+		// Verificar se o formulário foi enviado
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			// Receber dados do formulário
+			$email = $_POST["email"];
+			$senha = $_POST["senha"];
+	
+			// Chamar o método validar_usuario
+			$usuario = $this->Usuario_model->validar_usuario($email, $senha);
+	
+			// Verificar se o usuário foi encontrado
+			if ($usuario) {
+				// Usuário autenticado com sucesso
+				// Redirecionar o usuário para a página inicial ou qualquer outra página de sua escolha
+				header("/tcc/home_usuario");
+				exit(); // É importante sair após o redirecionamento para evitar que o código continue sendo executado
+			} else {
+				// Usuário não encontrado ou senha incorreta
+				// Redirecionar o usuário de volta para a página de login com uma mensagem de erro
+				header("Location: pagina_login.php?erro=1");
+				exit();
+			}
+		}
+	}
+	
 }
