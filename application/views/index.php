@@ -93,7 +93,7 @@
                         <h3 class="register-heading">Login Usuário</h3>
                         <div class="row register-form">
                             <div class="col-md-12">
-                                <form id="formUsuario" method="post">
+                                <form id="formUsuario" method="post" action="<?php echo site_url('Usuario/login_action'); ?>">
                                     <div class="form-group">
                                         <input type="text" name="email" class="form-control" placeholder="Email" value="" required="">
                                     </div>
@@ -139,7 +139,7 @@
 </html>
 
 <script>
-$(document).ready(function(){
+/*$(document).ready(function(){
     // Autenticação do usuário
     $("#formUsuario").submit(function(event){
         event.preventDefault(); // Evita o envio padrão do formulário
@@ -152,7 +152,7 @@ $(document).ready(function(){
         // Supondo que você tenha uma função para verificar o login do usuário
         if (validarUsuario(email, senha)) {
             // Redireciona o usuário para a página de início do controlador Usuario
-            window.location.href = "<?php echo base_url('usuario/home_usuario'); ?>";
+            window.location.href = "</?php echo base_url('usuario/home_usuario'); ?>";
         } else {
             alert("Credenciais inválidas. Por favor, tente novamente.");
         }
@@ -170,7 +170,7 @@ $(document).ready(function(){
         // Supondo que você tenha uma função para verificar o login da empresa
         if (validarEmpresa(email, senha)) {
             // Redireciona o usuário para a página de início do controlador Empresa
-            window.location.href = "<?php echo base_url('empresa/home_empresa'); ?>";
+            window.location.href = "</?php echo base_url('empresa/home_empresa'); ?>";
         } else {
             alert("Credenciais inválidas. Por favor, tente novamente.");
         }
@@ -195,6 +195,6 @@ $(document).ready(function(){
             return false;
         }
     }
-});
+});*/
 </script>
  

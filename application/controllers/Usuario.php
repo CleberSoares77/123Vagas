@@ -108,30 +108,48 @@ class Usuario extends CI_Controller
 		echo "Deletou";
 	}
 
-	public function autentica_usuario()
+	public function data()
 	{
-		// Verificar se o formulário foi enviado
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			// Receber dados do formulário
-			$email = $_POST["email"];
-			$senha = $_POST["senha"];
+		// Carrega a view 'home_usuario'
+		$this->load->view('usuario/home_usuario');
 	
-			// Chamar o método validar_usuario
-			$usuario = $this->Usuario_model->validar_usuario($email, $senha);
-	
-			// Verificar se o usuário foi encontrado
-			if ($usuario) {
-				// Usuário autenticado com sucesso
-				// Redirecionar o usuário para a página inicial ou qualquer outra página de sua escolha
-				header("/tcc/home_usuario");
-				exit(); // É importante sair após o redirecionamento para evitar que o código continue sendo executado
-			} else {
-				// Usuário não encontrado ou senha incorreta
-				// Redirecionar o usuário de volta para a página de login com uma mensagem de erro
-				header("Location: pagina_login.php?erro=1");
-				exit();
-			}
-		}
 	}
+	
+
+	public function login_action()  
+    {  
+        $this->load->helper('security');  
+        $this->load->library('form_validation');  
+  
+        $this->form_validation->set_rules('email', 'Email:', 'required|trim|xss_clean|callback_validation');  
+        $this->form_validation->set_rules('senha', 'Senha:', 'required|trim');  
+  
+        if ($this->form_validation->run())   
+        {  
+            $data = array(  
+                'email' => $this->input->post('email'),  
+                'home_usuario' => 1  
+                );    
+				$data['email'] = $this->Usuario_model->data($data);
+                redirect('Usuario/data');  
+        }   
+        else {  
+            $this->load->view('tcc/');  
+        }  
+    }  
+
+	public function validation()  
+    {  
+        $this->load->model('Usuario_model');  
+  
+        if ($this->Usuario_model->data())  
+        {  
+  
+            return true;  
+        } else {  
+            return false;  
+        }  
+    }  
+  
 	
 }

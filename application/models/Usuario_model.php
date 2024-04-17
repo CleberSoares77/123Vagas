@@ -41,4 +41,20 @@ class Usuario_model extends CI_Model
 		$query = $this->db->get_where('cadastro_usuario', array('email' => $email, 'senha' => $senha));
 		return $query->row(); // Retorna o resultado da consulta (ou null se não houver resultado)
 	}
+
+	public function data() {  
+  
+        $this->db->where('email', $this->input->post('email'));  
+        $this->db->where('senha', $this->input->post('senha'));  
+        $query = $this->db->get('cadastro_usuario');  
+  
+        if ($query->num_rows() == 1)  
+        {  
+            return true;  
+        } else {  
+            return false;  
+        }  
+  
+    }  
+  
 }
