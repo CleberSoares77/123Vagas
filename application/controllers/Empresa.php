@@ -100,4 +100,39 @@ class Empresa extends CI_Controller
 		$this->Empresa_model->delete_empresa($id);
 		echo "Deletou";
 	}
+
+	public function login_action1()  
+    {  
+        $this->load->helper('security');  
+        $this->load->library('form_validation');  
+  
+        $this->form_validation->set_rules('email', 'Email:', 'required|trim|xss_clean|callback_validation');  
+        $this->form_validation->set_rules('senha', 'Senha:', 'required|trim');  
+  
+        if ($this->form_validation->run())   
+        {  
+            $data = array(  
+                'email' => $this->input->post('email'),  
+                'home_empresa' => 1  
+                );    
+				$data['email'] = $this->Usuario_model->data($data);
+                redirect('Empresa/data');  
+        }   
+        else {  
+			$this->template->load('template', 'empresa/cadastro');
+        }  
+    }  
+
+	public function validation1()  
+    {  
+        $this->load->model('Empresa_model');  
+  
+        if ($this->Empresa_model->data())  
+        {  
+  
+            return true;  
+        } else {  
+            return false;  
+        }  
+    }  
 }

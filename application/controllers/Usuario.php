@@ -134,7 +134,7 @@ class Usuario extends CI_Controller
                 redirect('Usuario/data');  
         }   
         else {  
-            $this->load->view('tcc/');  
+			$this->template->load('template', 'usuario/cadastro');
         }  
     }  
 
