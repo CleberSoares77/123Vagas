@@ -112,15 +112,15 @@
                         <h3 class="register-heading">Login Empresa </h3>
                         <div class="row register-form">
                             <div class="col-md-12">
-                                <form id="formEmpresa" method="post" action="<?php echo site_url('Empresa/login_action1'); ?>">
+                                <form id="formEmpresa" method="post" action="<?php echo site_url('Empresa/data'); ?>">
                                     <div class="form-group">
-                                        <input type="text" name="email1" class="form-control" placeholder="Email" value="" required="">
+                                        <input type="text" name="email" class="form-control" placeholder="Email" value="" required="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="senha1" class="form-control" placeholder="Senha" value="" required="">
+                                        <input type="password" name="senha" class="form-control" placeholder="Senha" value="" required="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" name="login1" class="btn btn-primary btnLoginSubmit" value="Login" />
+                                        <input type="submit" name="login" class="btn btn-primary btnLoginSubmit" value="Login" />
                                         <a class="btn btn-link text-white btnForgetPwd">Esqueceu senha da empresa?</a>
                                     </div>
                                 </form>

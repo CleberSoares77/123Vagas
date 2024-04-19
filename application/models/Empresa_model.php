@@ -31,7 +31,7 @@ class Empresa_model extends CI_Model {
     }
 
 		// Método para validar usuário
-		public function validar_empresa1($email, $senha)
+		public function validar_empresa($email, $senha)
 		{
 			$query = $this->db->get_where('cadastro_empresa', array('email' => $email, 'senha' => $senha));
 			return $query->row(); // Retorna o resultado da consulta (ou null se não houver resultado)

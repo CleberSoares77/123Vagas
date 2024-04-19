@@ -19,15 +19,14 @@ class Empresa extends CI_Controller
 
 	public function home_empresa()
 	{
-		
-		$this->load->view( 'empresa/home_empresa');
+
+		$this->load->view('empresa/home_empresa');
 	}
 
 
 	public function cadastro_empresa()
 	{
-		if($_SERVER['REQUEST_METHOD'] == 'POST')
-		{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$data = [
 				'nome' => $this->input->post('nome'),
 				'cnpj' => $this->input->post('cnpj'),
@@ -35,14 +34,11 @@ class Empresa extends CI_Controller
 				'email' => $this->input->post('email'),
 				'senha' => $this->input->post('senha')
 			];
-			
+
 			// Efetua o cadastro e valida se foi cadastrado
-			if($this->Empresa_model->cadastrar_empresa($data))
-			{
+			if ($this->Empresa_model->cadastrar_empresa($data)) {
 				echo 'Cadastrou';
-			}
-			else
-			{
+			} else {
 				echo 'Ocorreu um erro ao cadastrar';
 			}
 		}
@@ -57,8 +53,6 @@ class Empresa extends CI_Controller
 		$data['empresa'] = $this->Empresa_model->edit_empresa($id);
 
 		$this->template->load('template', 'empresa/cadastro_empresa', $data);
-
-		
 	}
 
 	public function update_empresa($id = null)
@@ -69,7 +63,7 @@ class Empresa extends CI_Controller
 			echo "ID não fornecido.";
 			return;
 		}
-	
+
 		// Verifique se o método de solicitação é POST
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Assumindo que você tem dados do formulário em $_POST, recupere-os
@@ -80,10 +74,10 @@ class Empresa extends CI_Controller
 				'email' => $this->input->post('email'),
 				'senha' => $this->input->post('senha')
 			];
-	
+
 			// Chame o método update do Usuario_model com dados e ID
 			$this->Empresa_model->update_empresa($id, $data);
-	
+
 			// Redirecione após a atualização bem-sucedida
 			redirect("empresa");
 		} else {
@@ -92,8 +86,8 @@ class Empresa extends CI_Controller
 			return;
 		}
 	}
-	
-	
+
+
 
 	public function excluir_empresa($id)
 	{
@@ -101,38 +95,42 @@ class Empresa extends CI_Controller
 		echo "Deletou";
 	}
 
-	public function login_action1()  
-    {  
-        $this->load->helper('security');  
-        $this->load->library('form_validation');  
-  
-        $this->form_validation->set_rules('email', 'Email:', 'required|trim|xss_clean|callback_validation');  
-        $this->form_validation->set_rules('senha', 'Senha:', 'required|trim');  
-  
-        if ($this->form_validation->run())   
-        {  
-            $data = array(  
-                'email' => $this->input->post('email'),  
-                'home_empresa' => 1  
-                );    
-				$data['email'] = $this->Usuario_model->data($data);
-                redirect('Empresa/data');  
-        }   
-        else {  
-			$this->template->load('template', 'empresa/cadastro');
-        }  
-    }  
+	public function data()
+	{
+		// Carrega a view
+		$this->load->view('empresa/home_empresa');
+	}
 
-	public function validation1()  
-    {  
-        $this->load->model('Empresa_model');  
-  
-        if ($this->Empresa_model->data())  
-        {  
-  
-            return true;  
-        } else {  
-            return false;  
-        }  
-    }  
+
+	public function login_action()
+	{
+		$this->load->helper('security');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('email', 'Email:', 'required|trim|xss_clean|callback_validation');
+		$this->form_validation->set_rules('senha', 'Senha:', 'required|trim');
+
+		if ($this->form_validation->run()) {
+			$data = array(
+				'email' => $this->input->post('email'),
+				'home_empresa' => 1
+			);
+			$data['email'] = $this->Empresa_model->data($data);
+			redirect('Empresa/data');
+		} else {
+			$this->template->load('template', 'empresa/cadastro_empresa');
+		}
+	}
+
+	public function validation()
+	{
+		$this->load->model('Empresa_model');
+
+		if ($this->Empresa_model->data()) {
+
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

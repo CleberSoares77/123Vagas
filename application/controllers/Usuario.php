@@ -112,44 +112,38 @@ class Usuario extends CI_Controller
 	{
 		// Carrega a view 'home_usuario'
 		$this->load->view('usuario/home_usuario');
-	
 	}
-	
 
-	public function login_action()  
-    {  
-        $this->load->helper('security');  
-        $this->load->library('form_validation');  
-  
-        $this->form_validation->set_rules('email', 'Email:', 'required|trim|xss_clean|callback_validation');  
-        $this->form_validation->set_rules('senha', 'Senha:', 'required|trim');  
-  
-        if ($this->form_validation->run())   
-        {  
-            $data = array(  
-                'email' => $this->input->post('email'),  
-                'home_usuario' => 1  
-                );    
-				$data['email'] = $this->Usuario_model->data($data);
-                redirect('Usuario/data');  
-        }   
-        else {  
+
+	public function login_action()
+	{
+		$this->load->helper('security');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('email', 'Email:', 'required|trim|xss_clean|callback_validation');
+		$this->form_validation->set_rules('senha', 'Senha:', 'required|trim');
+
+		if ($this->form_validation->run()) {
+			$data = array(
+				'email' => $this->input->post('email'),
+				'home_usuario' => 1
+			);
+			$data['email'] = $this->Usuario_model->data($data);
+			redirect('Usuario/data');
+		} else {
 			$this->template->load('template', 'usuario/cadastro');
-        }  
-    }  
+		}
+	}
 
-	public function validation()  
-    {  
-        $this->load->model('Usuario_model');  
-  
-        if ($this->Usuario_model->data())  
-        {  
-  
-            return true;  
-        } else {  
-            return false;  
-        }  
-    }  
-  
-	
+	public function validation()
+	{
+		$this->load->model('Usuario_model');
+
+		if ($this->Usuario_model->data()) {
+
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
