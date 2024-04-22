@@ -25,8 +25,12 @@ class Usuario extends CI_Controller
 
 	public function esqueceu_senha()
 	{
-
 		$this->load->view('esqueceu_senha');
+	}
+
+	public function recuperar_senha()
+	{
+		$this->load->view('recuperar_senha');
 	}
 
 	public function cadastro()
