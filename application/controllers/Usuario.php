@@ -71,9 +71,36 @@ class Usuario extends CI_Controller
     $this->load->view('recuperar_senha');
 }
 
+public function atualizarSenha()
+{
+    // Verifique se o email e o token estão presentes na URL
+    $email = $this->input->get('email');
+    $token = $this->input->get('token');
+
+    if (!empty($email) && !empty($token)) {
+        // Verifique se o token é válido (exemplo simplificado)
+        $tokenValido = $this->Usuario_model->verificarTokenRedefinicaoSenha($email, $token);
+
+        if ($tokenValido) {
+            // Token válido, exiba a página de alteração de senha
+            $this->load->view('alterar_senha');
+        } else {
+            // Token inválido, redirecione para uma página de erro ou mensagem
+            redirect('usuario/token_invalido');
+        }
+    } else {
+        // Email ou token não fornecidos, redirecione para uma página de erro ou mensagem
+        redirect('usuario/token_invalido');
+    }
+}
+
+
+public function alterarSenhaProcessar()
+{
+    
+}
 
 	
-
 	public function cadastro()
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
