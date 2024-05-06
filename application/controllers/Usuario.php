@@ -29,78 +29,77 @@ class Usuario extends CI_Controller
 	}
 
 	public function recuperar_senha()
-{
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Lógica para recuperar a senha e obter o email do usuário
-        $email = $this->input->post('email'); // Supondo que o email foi recuperado
-        
-        // Verifique se o email está correto e envie o email de recuperação
-        if ($email != '') {
-            // Gerar um token único para o usuário
-            $token = bin2hex(random_bytes(16)); // Gera um token de 32 caracteres
-            
-            // Salvar o token no banco de dados junto com o email e a data de expiração (opcional)
-            $this->Usuario_model->salvarTokenRedefinicaoSenha($email, $token);
+	{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// Lógica para recuperar a senha e obter o email do usuário
+			$email = $this->input->post('email'); // Supondo que o email foi recuperado
 
-            // Construir o link de redefinição de senha
-            $linkRedefinicao = base_url('usuario/recuperar_senha') . '?email=' . urlencode($email) . '&token=' . urlencode($token);
+			// Verifique se o email está correto e envie o email de recuperação
+			if ($email != '') {
+				// Gerar um token único para o usuário
+				$token = bin2hex(random_bytes(16)); // Gera um token de 32 caracteres
 
-            // Construir o email
-            $to = $email;
-            $subject = "Recuperação de Senha";
-            $message = "Olá,<br><br>Você solicitou a recuperação de senha. Clique no link abaixo para redefinir sua senha:<br><br><a href=\"$linkRedefinicao\">Redefinir Senha</a><br><br>Atenciosamente,<br>Equipe do Sistema";
+				// Salvar o token no banco de dados junto com o email e a data de expiração (opcional)
+				$this->Usuario_model->salvarTokenRedefinicaoSenha($email, $token);
 
-            // Cabeçalho do email
-            $header = "From: clebersoares749@gmail.com \r\n";
-            $header .= "Content-Type: text/html; charset=UTF-8\r\n"; // Definindo o tipo de conteúdo como HTML
-            
-            // Envio do email de recuperação de senha
-            $result = mail($to, $subject, $message, $header);
-            
-            // Verifica se o email foi enviado com sucesso
-            if ($result) {
-                echo 'Email de recuperação de senha enviado com sucesso';
-            } else {
-                echo 'Ocorreu um erro ao enviar o email de recuperação de senha';
-            }
-        } else {
-            echo 'Email não fornecido para recuperação de senha';
-        }
-    }
+				// Construir o link de redefinição de senha
+				$linkRedefinicao = base_url('usuario/alterar_senha') . '?email=' . urlencode($email) . '&token=' . urlencode($token);
 
-    $this->load->view('recuperar_senha');
-}
+				// Construir o email
+				$to = $email;
+				$subject = "Recuperação de Senha";
+				$message = "Olá,<br><br>Você solicitou a recuperação de senha. Clique no link abaixo para redefinir sua senha:<br><br><a href=\"$linkRedefinicao\">Redefinir Senha</a><br><br>Atenciosamente,<br>Equipe do Sistema";
 
-public function atualizarSenha()
-{
-    // Verifique se o email e o token estão presentes na URL
-    $email = $this->input->get('email');
-    $token = $this->input->get('token');
+				// Cabeçalho do email
+				$header = "From: clebersoares749@gmail.com \r\n";
+				$header .= "Content-Type: text/html; charset=UTF-8\r\n"; // Definindo o tipo de conteúdo como HTML
 
-    if (!empty($email) && !empty($token)) {
-        // Verifique se o token é válido (exemplo simplificado)
-        $tokenValido = $this->Usuario_model->verificarTokenRedefinicaoSenha($email, $token);
+				// Envio do email de recuperação de senha
+				$result = mail($to, $subject, $message, $header);
 
-        if ($tokenValido) {
-            // Token válido, exiba a página de alteração de senha
-            $this->load->view('alterar_senha');
-        } else {
-            // Token inválido, redirecione para uma página de erro ou mensagem
-            redirect('usuario/token_invalido');
-        }
-    } else {
-        // Email ou token não fornecidos, redirecione para uma página de erro ou mensagem
-        redirect('usuario/token_invalido');
-    }
-}
+				// Verifica se o email foi enviado com sucesso
+				if ($result) {
+					echo 'Email de recuperação de senha enviado com sucesso';
+				} else {
+					echo 'Ocorreu um erro ao enviar o email de recuperação de senha';
+				}
+			} else {
+				echo 'Email não fornecido para recuperação de senha';
+			}
+		}
+
+		$this->load->view('recuperar_senha');
+	}
 
 
-public function alterarSenhaProcessar()
-{
-    
-}
+	public function alterar_senha()
+	{
+		$this->load->view('alterar_senha');
+	}
 
-	
+	public function atualizarSenha()
+	{
+		// Verifique se o email e o token estão presentes na URL
+		$email = $this->input->get('email');
+		$token = $this->input->get('token');
+
+		if (!empty($email) && !empty($token)) {
+			// Verifique se o token é válido (exemplo simplificado)
+			$tokenValido = $this->Usuario_model->verificarTokenRedefinicaoSenha($email, $token);
+
+			if ($tokenValido) {
+				// Token válido, exiba a página de alteração de senha
+				$this->load->view('alterar_senha');
+			} else {
+				// Token inválido, redirecione para uma página de erro ou mensagem
+				redirect('usuario/token_invalido');
+			}
+		} else {
+			// Email ou token não fornecidos, redirecione para uma página de erro ou mensagem
+			redirect('usuario/token_invalido');
+		}
+	}
+
 	public function cadastro()
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -113,7 +112,7 @@ public function alterarSenhaProcessar()
 				'genero' => $this->input->post('genero'),
 				'senha' => $this->input->post('senha')
 			];
-	
+
 			// Efetua o cadastro e valida se foi cadastrado
 			if ($this->Usuario_model->cadastrar($data)) {
 				// Envio do email após o cadastro
@@ -121,10 +120,10 @@ public function alterarSenhaProcessar()
 				$subject = "Bem-vindo ao nosso sistema";
 				$message = "Olá " . $data['nome'] . ",\r\n\r\nSeu cadastro foi realizado com sucesso!\r\n\r\nAtenciosamente,\r\nEquipe do Sistema";
 				$header = "From: seu-email@exemplo.com \r\n";
-				
+
 				// Envio do email
 				$result = mail($to, $subject, $message, $header);
-				
+
 				// Verifica se o email foi enviado com sucesso
 				if ($result) {
 					echo 'Cadastrou e enviou email de boas-vindas';
@@ -135,10 +134,10 @@ public function alterarSenhaProcessar()
 				echo 'Ocorreu um erro ao cadastrar';
 			}
 		}
-	
+
 		$this->template->load('template', 'usuario/cadastro');
 	}
-	
+
 
 	public function editar($id)
 	{
@@ -222,7 +221,7 @@ public function alterarSenhaProcessar()
 		}
 	}
 
-	
+
 
 	public function validation()
 	{
@@ -235,6 +234,4 @@ public function alterarSenhaProcessar()
 			return false;
 		}
 	}
-
-	
 }
