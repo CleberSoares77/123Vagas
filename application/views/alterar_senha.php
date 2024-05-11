@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>Alterar Senha</h1>
-    <form action="http://localhost/tcc/usuario/alterarSenhaProcessar" method="POST">
+    <p>Email: <?php echo $email; ?></p>
+    <form action="http://localhost/tcc/usuario/nova_senha" method="POST">
         <label for="novaSenha">Nova Senha:</label>
         <input type="password" id="novaSenha" name="novaSenha" required><br><br>
         

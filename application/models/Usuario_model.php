@@ -23,6 +23,16 @@ class Usuario_model extends CI_Model
 		)->row_array();
 	}
 
+	public function nova_senha($id)
+	{
+		return $this->db->get_where(
+			'cadastro_usuario',
+			array(
+				"id" => $id
+			)
+		)->row_array();
+	}
+
 	public function update($id, $usuario)
 	{
 		$this->db->where("id", $id);

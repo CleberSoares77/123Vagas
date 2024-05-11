@@ -154,6 +154,16 @@ class Usuario extends CI_Controller
 		exit();*/
 	}
 
+	public function nova_senha($id)
+	{
+		$_SERVER['REQUEST_METHOD'] == 'POST';
+
+		$data['usuario'] = $this->Usuario_model->nova_senha($id);
+
+
+		$this->template->load('template', 'usuario', $data);
+	}
+
 	public function update($id = null)
 	{
 		// Verifique se o ID foi fornecido
@@ -217,11 +227,9 @@ class Usuario extends CI_Controller
 			$data['email'] = $this->Usuario_model->data($data);
 			redirect('Usuario/data');
 		} else {
-			$this->template->load('template', 'usuario/cadastro');
+			$this->template->load('template','error');
 		}
 	}
-
-
 
 	public function validation()
 	{
@@ -234,4 +242,5 @@ class Usuario extends CI_Controller
 			return false;
 		}
 	}
+
 }
