@@ -31,7 +31,7 @@
 	<div class="d-flex justify-content-end mt-5 mb-5">
     <a href="<?= base_url('login'); ?>" class="btn btn-primary mr-5">Login</a>
     <a href="<?= base_url('usuario/cadastro'); ?>" class="btn btn-success mx-5">Cadastro usuário</a>
-    <a href="<?= base_url('empresa/cadastro_empresa'); ?>" class="btn btn-info ml-5">Cadastro empresa</a>
+    <a href="<?= base_url('empresa/cadastro_empresa'); ?>" class="btn btn-secondary">Cadastro empresa</a>
 </div>
 
 

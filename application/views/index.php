@@ -73,6 +73,30 @@
             border-top-right-radius: .25rem;
             color: white;
         }
+
+        /* Eye icon styles */
+        .eye-icon {
+            cursor: pointer;
+        }
+
+        .input-group-append {
+            margin-left: 10px;
+        }
+
+        .form-control {
+            background-color: #ffffff; /* cor dos campos */
+            color: black;
+        }
+
+        .form-control:focus {
+            background-color: #004085; /* cor dentro dos campos */
+            color: white;
+        }
+
+        .input-group-text {
+            background-color: green;
+            color: yellowgreen; /* cor do olho */
+        }
     </style>
 </head>
 
@@ -98,7 +122,14 @@
                                         <input type="text" name="email" class="form-control" placeholder="Email" value="" required="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="senha" class="form-control" placeholder="Senha" value="" required="">
+                                        <div class="input-group">
+                                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" value="" required="">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i id="olho" class="fa fa-eye-slash eye-icon" onclick="togglePassword('senha')"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="login" class="btn btn-primary btnLoginSubmit" value="Login" />
@@ -117,7 +148,14 @@
                                         <input type="text" name="email" class="form-control" placeholder="Email" value="" required="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="senha" class="form-control" placeholder="Senha" value="" required="">
+                                        <div class="input-group">
+                                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" value="" required="">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i id="olho" class="fa fa-eye-slash eye-icon" onclick="togglePassword('senha')"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="login" class="btn btn-primary btnLoginSubmit" value="Login" />
@@ -134,67 +172,22 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        function togglePassword(id) {
+            var passwordField = document.getElementById(id);
+            var showPasswordIcon = document.getElementById('olho');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                showPasswordIcon.classList.remove('fa-eye-slash');
+                showPasswordIcon.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                showPasswordIcon.classList.remove('fa-eye');
+                showPasswordIcon.classList.add('fa-eye-slash');
+            }
+        }
+    </script>
 </body>
 
 </html>
-
-<script>
-/*$(document).ready(function(){
-    // Autenticação do usuário
-    $("#formUsuario").submit(function(event){
-        event.preventDefault(); // Evita o envio padrão do formulário
-        
-        // Aqui você pode adicionar qualquer lógica de validação do formulário, se necessário
-        
-        // Simulação de autenticação bem-sucedida para usuário
-        var email = $("input[name='email']").val();
-        var senha = $("input[name='senha']").val();
-        // Supondo que você tenha uma função para verificar o login do usuário
-        if (validarUsuario(email, senha)) {
-            // Redireciona o usuário para a página de início do controlador Usuario
-            window.location.href = "</?php echo base_url('usuario/home_usuario'); ?>";
-        } else {
-            alert("Credenciais inválidas. Por favor, tente novamente.");
-        }
-    });
-
-    // Autenticação da empresa
-    $("#formEmpresa").submit(function(event){
-        event.preventDefault(); // Evita o envio padrão do formulário
-        
-        // Aqui você pode adicionar qualquer lógica de validação do formulário, se necessário
-        
-        // Simulação de autenticação bem-sucedida para empresa
-        var email = $("input[name='email1']").val();
-        var senha = $("input[name='senha1']").val();
-        // Supondo que você tenha uma função para verificar o login da empresa
-        if (validarEmpresa(email, senha)) {
-            // Redireciona o usuário para a página de início do controlador Empresa
-            window.location.href = "</?php echo base_url('empresa/home_empresa'); ?>";
-        } else {
-            alert("Credenciais inválidas. Por favor, tente novamente.");
-        }
-    });
-
-    // Função de validação simulada do usuário (substitua por sua própria lógica)
-    function validarUsuario(email, senha) {
-        // Simulação de autenticação bem-sucedida
-        if (email === "usuario@example.com" && senha === "senhausuario") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Função de validação simulada da empresa (substitua por sua própria lógica)
-    function validarEmpresa(email, senha) {
-        // Simulação de autenticação bem-sucedida
-        if (email === "empresa@example.com" && senha === "senhaempresa") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-});*/
-</script>
- 
