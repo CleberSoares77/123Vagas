@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,7 +98,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container register">
         <div class="row">
@@ -123,10 +121,10 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" value="" required="">
+                                            <input type="password" id="senhaUsuario" name="senha" class="form-control" placeholder="Senha" value="" required="">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
-                                                    <i id="olho" class="fa fa-eye-slash eye-icon" onclick="togglePassword('senha')"></i>
+                                                    <i id="olhoUsuario" class="fa fa-eye-slash eye-icon" onclick="togglePassword('senhaUsuario', 'olhoUsuario')"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -140,7 +138,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade show text-align form-new" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h3 class="register-heading">Login Empresa </h3>
+                        <h3 class="register-heading">Login Empresa</h3>
                         <div class="row register-form">
                             <div class="col-md-12">
                                 <form id="formEmpresa" method="post" action="<?php echo site_url('Empresa/data'); ?>">
@@ -149,10 +147,10 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" value="" required="">
+                                            <input type="password" id="senhaEmpresa" name="senha" class="form-control" placeholder="Senha" value="" required="">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
-                                                    <i id="olho" class="fa fa-eye-slash eye-icon" onclick="togglePassword('senha')"></i>
+                                                    <i id="olhoEmpresa" class="fa fa-eye-slash eye-icon" onclick="togglePassword('senhaEmpresa', 'olhoEmpresa')"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -174,9 +172,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
-        function togglePassword(id) {
-            var passwordField = document.getElementById(id);
-            var showPasswordIcon = document.getElementById('olho');
+        function togglePassword(passwordId, iconId) {
+            var passwordField = document.getElementById(passwordId);
+            var showPasswordIcon = document.getElementById(iconId);
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
                 showPasswordIcon.classList.remove('fa-eye-slash');
@@ -189,5 +187,4 @@
         }
     </script>
 </body>
-
 </html>
