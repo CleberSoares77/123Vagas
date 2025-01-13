@@ -25,6 +25,8 @@ class Usuario extends CI_Controller
 
 	public function esqueceu_senha()
 	{
+		
+
 		$this->load->view('esqueceu_senha');
 	}
 
