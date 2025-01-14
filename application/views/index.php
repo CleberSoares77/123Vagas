@@ -19,7 +19,7 @@
         }
 
         .register .nav-tabs .nav-link:hover {
-            border: none;
+            border: none; 
         }
 
         .text-align {
