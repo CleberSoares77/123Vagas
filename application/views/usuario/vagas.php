@@ -16,7 +16,7 @@
   </style>
 </head>
 <body>
-  <h5>Adicionar vagas</h5>
+  <h2>Adicionar vagas</h2>
 
   <!-- Formulário para adicionar vagas com upload de imagem -->
   <form action="processar_vaga.php" method="POST" enctype="multipart/form-data">
