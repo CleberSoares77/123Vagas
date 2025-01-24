@@ -1,43 +1,50 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <title>Vagas</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 80%;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
-  <h2>Adicionar vagas</h2>
+<?php
+// Verificar se a requisição é do tipo POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    // Verificar se os campos estão presentes
+    if (isset($_POST['titulo'], $_POST['descricao'], $_FILES['imagem'])) {
+        
+        $titulo = $_POST['titulo'];
+        $descricao = $_POST['descricao'];
 
-  <!-- Formulário para adicionar vagas com upload de imagem -->
-  <form action="processar_vaga.php" method="POST" enctype="multipart/form-data">
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Título da Vaga</th>
-          <th>Descrição</th>
-          <th>Imagem</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="text" name="titulo" placeholder="Título da vaga" required></td>
-          <td><textarea name="descricao" placeholder="Descrição da vaga" rows="3" required></textarea></td>
-          <td><input type="file" name="imagem" accept="image/*" required></td>
-          <td><button type="submit">Enviar</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-</body>
-</html>
+        // Processar o upload da imagem
+        $imagem = $_FILES['imagem'];
+        $imagemNome = $imagem['name'];
+        $imagemTemp = $imagem['tmp_name'];
+        $imagemErro = $imagem['error'];
+
+        // Definir o diretório de destino para a imagem
+        $diretorioDestino = 'uploads/';
+        
+        // Verificar se o diretório existe, caso contrário, criar
+        if (!is_dir($diretorioDestino)) {
+            mkdir($diretorioDestino, 0777, true);
+        }
+
+        // Verificar se não houve erro no upload da imagem
+        if ($imagemErro === 0) {
+            // Gerar um nome único para o arquivo
+            $imagemNovoNome = uniqid('', true) . '.' . pathinfo($imagemNome, PATHINFO_EXTENSION);
+            $imagemDestino = $diretorioDestino . $imagemNovoNome;
+
+            // Mover a imagem para o diretório de destino
+            if (move_uploaded_file($imagemTemp, $imagemDestino)) {
+                echo "Vaga adicionada com sucesso!";
+                echo "<br>Título: " . htmlspecialchars($titulo);
+                echo "<br>Descrição: " . htmlspecialchars($descricao);
+                echo "<br>Imagem salva como: " . $imagemNovoNome;
+            } else {
+                echo "Erro ao mover a imagem.";
+            }
+        } else {
+            echo "Erro no upload da imagem.";
+        }
+
+    } else {
+        echo "Todos os campos devem ser preenchidos.";
+    }
+} else {
+    echo "Método inválido.";
+}
+?>
