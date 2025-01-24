@@ -19,7 +19,7 @@
   <h2>Adicionar vagas</h2>
 
   <!-- Formulário para adicionar vagas com upload de imagem -->
-  <form action="tcc/home_usuario.php" method="POST" enctype="multipart/form-data">
+  <form action="usuario/index.php" method="POST" enctype="multipart/form-data">
     <table border="1">
       <thead>
         <tr>
