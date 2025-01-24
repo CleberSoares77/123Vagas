@@ -17,6 +17,12 @@ class Usuario extends CI_Controller
 		$this->template->load('template', 'usuario/index', $data);
 	}
 
+	public function vagas()
+	{
+
+		$this->load->view('usuario/vagas');
+	}
+
 	public function home_usuario()
 	{
 
