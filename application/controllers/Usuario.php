@@ -20,7 +20,7 @@ class Usuario extends CI_Controller
 	public function vagas()
 	{
 
-		$this->load->view('usuario/vagas');
+		$this->load->view('tcc/usuario/vagas');
 	}
 
 	public function home_usuario()
