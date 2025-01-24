@@ -87,16 +87,39 @@
           <div class="row">
             <!-- Card Loop -->
             <?php
-            // Sample array of company images and information (replace this with your actual data)
-            $companies = [
-              ['image' => 'imagems', 'name' => 'Vaga A', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga B', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga C', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga D', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga E', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga F', 'description' => 'Descrição'],
-            ];
-
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+              // Diretório onde as imagens serão armazenadas
+              $diretorioDestino = 'uploads/';
+          
+              // Certifique-se de que o diretório existe ou crie-o
+              if (!is_dir($diretorioDestino)) {
+                  mkdir($diretorioDestino, 0777, true);
+              }
+          
+              // Verifica se a imagem foi enviada sem erros
+              if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+                  $nomeImagem = $_FILES['imagem']['name'];
+                  $caminhoTemp = $_FILES['imagem']['tmp_name'];
+                  $caminhoFinal = $diretorioDestino . basename($nomeImagem);
+          
+                  // Move o arquivo para o diretório de destino
+                  if (move_uploaded_file($caminhoTemp, $caminhoFinal)) {
+                      $titulo = htmlspecialchars($_POST['titulo']);
+                      $descricao = htmlspecialchars($_POST['descricao']);
+          
+                      echo "<h3>Vaga adicionada com sucesso!</h3>";
+                      echo "<p><strong>Título:</strong> {$titulo}</p>";
+                      echo "<p><strong>Descrição:</strong> {$descricao}</p>";
+                      echo "<p><strong>Imagem:</strong><br><img src='{$caminhoFinal}' alt='Imagem da vaga' width='200'></p>";
+                  } else {
+                      echo "<p>Erro ao mover a imagem.</p>";
+                  }
+              } else {
+                  echo "<p>Erro no envio da imagem.</p>";
+              }
+          } else {
+              echo "<p>Método inválido.</p>";
+          }
             foreach ($companies as $company) {
             ?>
               <div class="col-md-4">
