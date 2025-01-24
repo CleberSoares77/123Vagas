@@ -87,41 +87,53 @@
           <div class="row">
             <!-- Card Loop -->
             <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Diretório onde as imagens serão armazenadas
-    $diretorioDestino = 'uploads/';
+            // Sample array of company images and information (replace this with your actual data)
+            $companies = [
+              ['image' => 'imagems', 'name' => 'Vaga A', 'description' => 'Descrição'],
+              ['image' => 'imagems', 'name' => 'Vaga B', 'description' => 'Descrição'],
+              ['image' => 'imagems', 'name' => 'Vaga C', 'description' => 'Descrição'],
+              ['image' => 'imagems', 'name' => 'Vaga D', 'description' => 'Descrição'],
+              ['image' => 'imagems', 'name' => 'Vaga E', 'description' => 'Descrição'],
+              ['image' => 'imagems', 'name' => 'Vaga F', 'description' => 'Descrição'],
+            ];
 
-    // Certifique-se de que o diretório existe ou crie-o
-    if (!is_dir($diretorioDestino)) {
-        mkdir($diretorioDestino, 0777, true);
-    }
+            foreach ($companies as $company) {
+            ?>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <div class="text-center"> <!-- Centralizando a imagem -->
+                    <img class="card-img-top mx-auto" src="<?php echo $company['image']; ?>" alt="Company Image">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo $company['name']; ?></h5>
+                    <p class="card-text"><?php echo $company['description']; ?></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      </div>
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php } ?>
+            <!-- End Card Loop -->
+          </div>
+        </div>
+      </div>
+    </main>
 
-    // Verifica se a imagem foi enviada sem erros
-    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-        $nomeImagem = $_FILES['imagem']['name'];
-        $caminhoTemp = $_FILES['imagem']['tmp_name'];
-        $caminhoFinal = $diretorioDestino . basename($nomeImagem);
+    <footer class="container">
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!--<img src="img_car.jpg" alt="Car" style="width:100%">--->
 
-        // Move o arquivo para o diretório de destino
-        if (move_uploaded_file($caminhoTemp, $caminhoFinal)) {
-            $titulo = htmlspecialchars($_POST['titulo']);
-            $descricao = htmlspecialchars($_POST['descricao']);
-
-            echo "<h3>Vaga adicionada com sucesso!</h3>";
-            echo "<p><strong>Título:</strong> {$titulo}</p>";
-            echo "<p><strong>Descrição:</strong> {$descricao}</p>";
-            echo "<p><strong>Imagem:</strong><br><img src='{$caminhoFinal}' alt='Imagem da vaga' width='200'></p>";
-        } else {
-            echo "<p>Erro ao mover a imagem.</p>";
-        }
-    } else {
-        echo "<p>Erro no envio da imagem.</p>";
-    }
-} else {
-    echo "<p>Método inválido.</p>";
-}
-?>
-
+    <div class="w3-container">
 
     </div>
 
