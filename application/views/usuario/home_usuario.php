@@ -89,7 +89,7 @@
             <?php
 // Exemplo de um array de empresas com imagens e informações
 $companies = [
-    ['image' => 'imagens/Imagem do WhatsApp de 2024-08-09 à(s) 13.33.20_6768d331.jpg', 'name' => 'Vaga A', 'description' => 'Descrição da Vaga A'],
+    ['image' => 'c:\Users\clebe\Downloads/Imagem do WhatsApp de 2024-08-09 à(s) 13.33.20_6768d331.jpg', 'name' => 'Vaga A', 'description' => 'Descrição da Vaga A'],
     ['image' => 'uploads/vaga_b.jpg', 'name' => 'Vaga B', 'description' => 'Descrição da Vaga B'],
     ['image' => 'uploads/vaga_c.jpg', 'name' => 'Vaga C', 'description' => 'Descrição da Vaga C'],
     ['image' => 'uploads/vaga_d.jpg', 'name' => 'Vaga D', 'description' => 'Descrição da Vaga D'],
