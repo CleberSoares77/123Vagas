@@ -87,36 +87,38 @@
           <div class="row">
             <!-- Card Loop -->
             <?php
-            // Sample array of company images and information (replace this with your actual data)
-            $companies = [
-              ['image' => 'imagems', 'name' => 'Vaga A', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga B', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga C', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga D', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga E', 'description' => 'Descrição'],
-              ['image' => 'imagems', 'name' => 'Vaga F', 'description' => 'Descrição'],
-            ];
+// Exemplo de um array de empresas com imagens e informações
+$companies = [
+    ['image' => 'Imagens/Imagem do WhatsApp de 2024-08-09 à(s) 13.33.20_6768d331.jpg', 'name' => 'Vaga A', 'description' => 'Descrição da Vaga A'],
+    ['image' => 'uploads/vaga_b.jpg', 'name' => 'Vaga B', 'description' => 'Descrição da Vaga B'],
+    ['image' => 'uploads/vaga_c.jpg', 'name' => 'Vaga C', 'description' => 'Descrição da Vaga C'],
+    ['image' => 'uploads/vaga_d.jpg', 'name' => 'Vaga D', 'description' => 'Descrição da Vaga D'],
+    ['image' => 'uploads/vaga_e.jpg', 'name' => 'Vaga E', 'description' => 'Descrição da Vaga E'],
+    ['image' => 'uploads/vaga_f.jpg', 'name' => 'Vaga F', 'description' => 'Descrição da Vaga F'],
+];
 
-            foreach ($companies as $company) {
-            ?>
-              <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                  <div class="text-center"> <!-- Centralizando a imagem -->
-                    <img class="card-img-top mx-auto" src="<?php echo $company['image']; ?>" alt="Company Image">
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title"><?php echo $company['name']; ?></h5>
-                    <p class="card-text"><?php echo $company['description']; ?></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      </div>
-                      <small class="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <?php } ?>
+// Laço para exibir as empresas
+foreach ($companies as $company) {
+?>
+  <div class="col-md-4">
+    <div class="card mb-4 box-shadow">
+      <div class="text-center"> <!-- Centralizando a imagem -->
+        <img class="card-img-top mx-auto" src="<?php echo $company['image']; ?>" alt="Imagem da empresa">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><?php echo $company['name']; ?></h5>
+        <p class="card-text"><?php echo $company['description']; ?></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+          </div>
+          <small class="text-muted">9 mins</small>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+
             <!-- End Card Loop -->
           </div>
         </div>
