@@ -23,6 +23,12 @@ class Empresa extends CI_Controller
 		$this->load->view('empresa/home_empresa');
 	}
 
+	public function vagas()
+	{
+
+		$this->load->view('empresa/vagas');
+	}
+
 
 	public function cadastro_empresa()
 	{
