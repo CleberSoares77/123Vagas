@@ -245,16 +245,10 @@ class Usuario extends CI_Controller
 		}
 	}
 	public function homeUsuario()
-	{
-		$vagas = $this->Usuario_model->getVagas(); // Obtém as vagas
-		echo "<pre>";
-		print_r($vagas);
-		echo "</pre>";
-		exit; // Para ver o resultado e interromper a execução
-	
-		$data['vagas'] = $vagas;
-		$this->load->view('usuario/home_usuario', $data);
-	}
+    {
+        $data['vagas'] = $this->Usuario_model->getVagas(); // Busca as vagas
+        $this->load->view('usuario/home_usuario', $data); // Passa os dados para a view
+    }
 	
 
 }
