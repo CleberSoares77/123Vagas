@@ -17,6 +17,12 @@ class Usuario extends CI_Controller
 		$this->template->load('template', 'usuario/index', $data);
 	}
 
+	public function home_usuario()
+	{
+
+		$this->load->view('usuario/home_usuario');
+	}
+
 	public function esqueceu_senha()
 	{
 		
@@ -238,7 +244,7 @@ class Usuario extends CI_Controller
 			return false;
 		}
 	}
-	public function home_usuario()
+	public function homeUsuario()
 {
     $vagas = $this->Usuario_model->getVagas(); // Obtém as vagas do banco
     $data['vagas'] = $vagas; // Passa as vagas para a view
