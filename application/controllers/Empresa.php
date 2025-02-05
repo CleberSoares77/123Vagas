@@ -142,27 +142,7 @@ class Empresa extends CI_Controller
 		}
 	}
 
-	public function uploadImagem()
-{
-    // Configurações para o upload
-    $config['upload_path'] = './uploads/'; // Diretório onde as imagens serão armazenadas
-    $config['allowed_types'] = 'jpg|jpeg|png|gif'; // Tipos de arquivos permitidos
-    $config['max_size'] = 2048; // Tamanho máximo do arquivo em KB
-    $config['file_name'] = time() . '_' . $_FILES['imagem']['name']; // Nome do arquivo (evita duplicação)
-
-    // Carrega a biblioteca de upload
-    $this->load->library('upload', $config);
-
-    // Verifica se o upload foi realizado com sucesso
-    if ($this->upload->do_upload('imagem')) {
-        // Retorna o nome do arquivo ou caminho da imagem
-        return $this->upload->data('file_name');
-    } else {
-        // Caso haja erro no upload
-        return false;
-    }
-}
-
+	
 
 	public function cadastrarVaga()
 	{
@@ -172,15 +152,15 @@ class Empresa extends CI_Controller
 		// Pegue os dados do formulário
 		$nome = $this->input->post('nome');
 		$descricao = $this->input->post('descricao');
-		$imagem = $this->uploadImagem(); // Suponha que você tenha um método para upload de imagem
+		//$imagem = $this->uploadImagem(); // Suponha que você tenha um método para upload de imagem
 	
 		// Verifique se os dados foram recebidos corretamente
-		if ($nome && $descricao && $imagem) {
+		if ($nome && $descricao) {
 			// Salve os dados no banco de dados
 			$dados = [
 				'nome' => $nome,
 				'descricao' => $descricao,
-				'imagem' => $imagem
+				
 			];
 	
 			if ($this->Empresa_model->salvarVaga($dados)) {
