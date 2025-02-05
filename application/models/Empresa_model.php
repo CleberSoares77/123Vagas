@@ -64,10 +64,7 @@ class Empresa_model extends CI_Model {
 
 		public function getVagas()
 		{
-			$this->db->select('id, titulo, descricao, imagem');
-			$this->db->from('vagas');
-			$query = $this->db->get();
-			
-			return $query->num_rows() > 0 ? $query->result() : [];
+			$query = $this->db->get('vagas');
+			return $query->result();
 		}
 }
