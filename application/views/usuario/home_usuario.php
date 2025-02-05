@@ -1,36 +1,71 @@
 <!DOCTYPE html>
-<html>
-<title>SOSVagas</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<html lang="pt-br">
+<head>
+  <title>SOSVagas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .vagas-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
 
-<style>
-  .link {
-    text-align: right;
-    margin-top: 10px;
-  }
-</style>
+    .vaga-card {
+      width: 30%;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
 
+    .vaga-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .vaga-card .w3-container {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .vaga-card h4 {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .vaga-card {
+        width: 48%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .vaga-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
 <body>
+
   <div class="w3-container">
     <h2>Vagas Cadastradas</h2>
     
     <?php if (!empty($vagas)) : ?>
-    <?php foreach ($vagas as $vaga) : ?>
-        <div class="w3-col m4">
-            <div class="w3-card">
-                <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>" style="width:100%">
-                <div class="w3-container">
-                    <h4><b><?= $vaga->nome ?></b></h4>
-                    <p><?= $vaga->descricao ?></p>
-                </div>
+      <div class="vagas-container">
+        <?php foreach ($vagas as $vaga) : ?>
+          <div class="vaga-card w3-card">
+            <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>">
+            <div class="w3-container">
+              <h4><b><?= $vaga->nome ?></b></h4>
+              <p><?= $vaga->descricao ?></p>
             </div>
-        </div>
-    <?php endforeach; ?>
-<?php else : ?>
-    <p>Nenhuma vaga cadastrada.</p>
-<?php endif; ?>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    <?php else : ?>
+      <p>Nenhuma vaga cadastrada.</p>
+    <?php endif; ?>
 
   </div>
+
 </body>
 </html>
