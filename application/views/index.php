@@ -115,7 +115,7 @@
                         <h3 class="register-heading">Login Usuário</h3>
                         <div class="row register-form">
                             <div class="col-md-12">
-                                <form id="formUsuario" method="post" action="<?php echo site_url('Usuario/login_action'); ?>">
+                                <form id="formUsuario" method="post" action="<?php echo site_url('Usuario/home_usuario'); ?>">
                                     <div class="form-group">
                                         <input type="text" name="email" class="form-control" placeholder="Email" value="" required="">
                                     </div>
