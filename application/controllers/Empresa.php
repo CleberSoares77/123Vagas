@@ -6,8 +6,7 @@ class Empresa extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Empresa_model');
-		$this->load->model('Vaga_model'); // Carrega o model da vaga
+		$this->load->model('Empresa_model'); // Carrega o model da vaga
         $this->load->helper(array('form', 'url'));
         $this->load->library('session'); // Carrega a biblioteca de sessão
 	}
@@ -168,7 +167,7 @@ class Empresa extends CI_Controller
             }
 
             // Salva a vaga no banco
-            if ($this->Vaga_model->cadastrar($data)) {
+            if ($this->Empresa_model->cadastrar($data)) {
                 $this->session->set_flashdata('success', 'Vaga cadastrada com sucesso!');
             } else {
                 $this->session->set_flashdata('error', 'Erro ao cadastrar a vaga.');
