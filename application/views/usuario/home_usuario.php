@@ -20,14 +20,15 @@
     }
 
     .vaga-card {
-      width: 50%;
+      width: 100%;
       margin-bottom: 20px;
       box-sizing: border-box;
     }
 
     .vaga-card img {
-      width: 50%;
+      width: 100%;
       height: auto;
+      cursor: pointer;
     }
 
     .vaga-card .w3-container {
@@ -39,6 +40,46 @@
       margin-bottom: 10px;
     }
 
+    /* Estilo do modal */
+    .modal {
+      display: none; /* Escondido por padrão */
+      position: fixed; /* Fica fixo na tela */
+      z-index: 1; /* Fica por cima do conteúdo */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Se necessário, aparece a barra de rolagem */
+      background-color: rgb(0, 0, 0); /* Cor de fundo */
+      background-color: rgba(0, 0, 0, 0.9); /* Fundo preto com opacidade */
+    }
+
+    /* Estilo da imagem do modal */
+    .modal-content {
+      margin: 5% auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    /* Estilo para fechar o modal */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -50,11 +91,17 @@
       <div>
         <?php foreach ($vagas as $vaga) : ?>
           <div class="vaga-card w3-card">
-            <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>">
+            <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>" onclick="openModal('modal-<?= $vaga->id ?>')">
             <div class="w3-container">
               <h4><b><?= $vaga->nome ?></b></h4>
               <p><?= $vaga->descricao ?></p>
             </div>
+          </div>
+
+          <!-- Modal de Imagem -->
+          <div id="modal-<?= $vaga->id ?>" class="modal">
+            <span class="close" onclick="closeModal('modal-<?= $vaga->id ?>')">&times;</span>
+            <img class="modal-content" id="img-<?= $vaga->id ?>" src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>">
           </div>
         <?php endforeach; ?>
       </div>
@@ -63,6 +110,30 @@
     <?php endif; ?>
 
   </div>
+
+  <script>
+    // Função para abrir o modal
+    function openModal(modalId) {
+      var modal = document.getElementById(modalId);
+      modal.style.display = "block";
+    }
+
+    // Função para fechar o modal
+    function closeModal(modalId) {
+      var modal = document.getElementById(modalId);
+      modal.style.display = "none";
+    }
+
+    // Fechar o modal se o usuário clicar fora da imagem
+    window.onclick = function(event) {
+      var modals = document.getElementsByClassName('modal');
+      for (var i = 0; i < modals.length; i++) {
+        if (event.target == modals[i]) {
+          modals[i].style.display = "none";
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>
