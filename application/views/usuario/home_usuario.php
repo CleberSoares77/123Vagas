@@ -23,6 +23,7 @@
       width: 100%;
       margin-bottom: 20px;
       box-sizing: border-box;
+      display: none; /* Esconde as vagas por padrão */
     }
 
     .vaga-card img {
@@ -87,11 +88,11 @@
 
   <div class="w3-container">
     <h2 style="text-align: center;">Vagas Cadastradas</h2>
-    
+
     <?php if (!empty($vagas)) : ?>
-      <div>
-        <?php foreach ($vagas as $vaga) : ?>
-          <div class="vaga-card w3-card">
+      <div id="vaga-container">
+        <?php foreach ($vagas as $index => $vaga) : ?>
+          <div class="vaga-card w3-card" id="vaga-<?= $index ?>">
             <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>" onclick="openModal('modal-<?= $vaga->id ?>')">
             <div class="w3-container">
               <h4><b><?= $vaga->nome ?></b></h4>
@@ -106,13 +107,32 @@
           </div>
         <?php endforeach; ?>
       </div>
+
+      <div style="text-align: center;">
+        <button onclick="showVaga(0)" class="w3-button w3-blue">Primeira</button>
+        <button onclick="prevVaga()" class="w3-button w3-green">Anterior</button>
+        <button onclick="nextVaga()" class="w3-button w3-green">Próxima</button>
+        <button onclick="showVaga(<?= count($vagas) - 1 ?>)" class="w3-button w3-blue">Última</button>
+      </div>
     <?php else : ?>
       <p style="text-align: center;">Nenhuma vaga cadastrada.</p>
     <?php endif; ?>
-
   </div>
 
   <script>
+    let currentVaga = 0;
+    const vagas = document.querySelectorAll('.vaga-card');
+    const totalVagas = vagas.length;
+
+    // Exibe a vaga atual
+    function showVaga(index) {
+      if (index >= 0 && index < totalVagas) {
+        vagas[currentVaga].style.display = "none";  // Esconde a vaga atual
+        vagas[index].style.display = "block";  // Exibe a nova vaga
+        currentVaga = index;
+      }
+    }
+
     // Função para abrir o modal
     function openModal(modalId) {
       var modal = document.getElementById(modalId);
@@ -134,6 +154,25 @@
         }
       }
     }
+
+    // Função para mostrar a vaga anterior
+    function prevVaga() {
+      if (currentVaga > 0) {
+        showVaga(currentVaga - 1);
+      }
+    }
+
+    // Função para mostrar a próxima vaga
+    function nextVaga() {
+      if (currentVaga < totalVagas - 1) {
+        showVaga(currentVaga + 1);
+      }
+    }
+
+    // Exibe a primeira vaga ao carregar a página
+    window.onload = function() {
+      showVaga(0);
+    };
   </script>
 
 </body>
