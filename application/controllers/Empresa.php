@@ -143,8 +143,8 @@ class Empresa extends CI_Controller
 	}
 	public function cadastrarVaga()
 	{
-		// Suponha que você tenha um modelo 'VagasModel' para salvar as informações
-		$this->load->model('VagasModel');
+		// Suponha que você tenha um modelo 'Empresa_model' para salvar as informações
+		$this->load->model('Empresa_model');
 		
 		// Pegue os dados do formulário
 		$nome = $this->input->post('nome');
@@ -160,7 +160,7 @@ class Empresa extends CI_Controller
 				'imagem' => $imagem
 			];
 	
-			if ($this->VagasModel->salvarVaga($dados)) {
+			if ($this->Empresa_model->salvarVaga($dados)) {
 				// Mensagem de sucesso
 				$this->session->set_flashdata('success', 'Vaga cadastrada com sucesso!');
 			} else {
