@@ -50,6 +50,12 @@ class Empresa_model extends CI_Model {
 				return false;  
 			} 
 		}
+
+		public function __construct()
+		{
+			parent::__construct();
+		}
+		
 		public function salvarVaga($dados)
 		{
 			// Insere os dados na tabela de vagas
