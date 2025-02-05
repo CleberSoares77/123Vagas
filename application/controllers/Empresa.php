@@ -175,7 +175,7 @@ class Empresa extends CI_Controller
         }
 
         // Carrega a view
-        $this->load->view('cadastrarVaga');
+        $this->load->view('Empresa/cadastrarVaga');
     }
 
     public function uploadImagem()
