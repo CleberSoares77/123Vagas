@@ -141,6 +141,29 @@ class Empresa extends CI_Controller
 			return false;
 		}
 	}
+
+	public function uploadImagem()
+{
+    // Configurações para o upload
+    $config['upload_path'] = './uploads/'; // Diretório onde as imagens serão armazenadas
+    $config['allowed_types'] = 'jpg|jpeg|png|gif'; // Tipos de arquivos permitidos
+    $config['max_size'] = 2048; // Tamanho máximo do arquivo em KB
+    $config['file_name'] = time() . '_' . $_FILES['imagem']['name']; // Nome do arquivo (evita duplicação)
+
+    // Carrega a biblioteca de upload
+    $this->load->library('upload', $config);
+
+    // Verifica se o upload foi realizado com sucesso
+    if ($this->upload->do_upload('imagem')) {
+        // Retorna o nome do arquivo ou caminho da imagem
+        return $this->upload->data('file_name');
+    } else {
+        // Caso haja erro no upload
+        return false;
+    }
+}
+
+
 	public function cadastrarVaga()
 	{
 		// Suponha que você tenha um modelo 'Empresa_model' para salvar as informações
