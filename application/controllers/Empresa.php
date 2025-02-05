@@ -141,41 +141,59 @@ class Empresa extends CI_Controller
 			return false;
 		}
 	}
-	public function cadastrarVaga() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Captura os dados do formulário
-            $data = [
-                'nome' => $this->input->post('nome'),
-                'descricao' => $this->input->post('descricao')
-            ];
+	public function cadastrarVaga()
+    {
+        // Verifica se o formulário foi enviado
+        if ($this->input->post()) {
+            // Chama o método de upload da imagem
+            $imagem = $this->uploadImagem();
 
-            // Upload da imagem
-            if (!empty($_FILES['imagem']['name'])) {
-                $config['upload_path']   = './uploads/';
-                $config['allowed_types'] = 'jpg|jpeg|png|gif';
-                $config['max_size']      = 2048; // 2MB
-                $this->load->library('upload', $config);
+            if ($imagem) {
+                // Recebe os dados do formulário
+                $nome = $this->input->post('nome');
+                $descricao = $this->input->post('descricao');
 
-                if ($this->upload->do_upload('imagem')) {
-                    $uploadData = $this->upload->data();
-                    $data['imagem'] = 'uploads/' . $uploadData['file_name'];
+                // Prepara os dados para inserir no banco
+                $dados = [
+                    'nome' => $nome,
+                    'descricao' => $descricao,
+                    'imagem' => 'uploads/' . $imagem, // Caminho da imagem
+                ];
+
+                // Salva os dados no banco
+                if ($this->VagasModel->salvarVaga($dados)) {
+                    $this->session->set_flashdata('success', 'Vaga cadastrada com sucesso!');
                 } else {
-                    $this->session->set_flashdata('error', 'Erro ao fazer upload da imagem.');
-                    redirect('empresa/cadastrarVaga');
-                    return;
+                    $this->session->set_flashdata('error', 'Erro ao cadastrar a vaga.');
                 }
-            }
-
-            // Salva a vaga no banco
-            if ($this->Empresa_model->cadastrar($data)) {
-                $this->session->set_flashdata('success', 'Vaga cadastrada com sucesso!');
             } else {
-                $this->session->set_flashdata('error', 'Erro ao cadastrar a vaga.');
+                $this->session->set_flashdata('error', 'Erro no upload da imagem.');
             }
 
-            redirect('empresa/cadastrarVaga'); // Redireciona para a mesma página
+            // Redireciona para a página de cadastro
+            redirect('empresa/cadastrarVaga');
         }
 
-        $this->load->view('empresa/cadastrarVaga'); // Carrega a página do formulário
+        // Carrega a view
+        $this->load->view('cadastrar_vaga');
+    }
+
+    public function uploadImagem()
+    {
+        // Configurações para o upload da imagem
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['max_size'] = 2048;
+        $config['file_name'] = time() . '_' . $_FILES['imagem']['name'];
+
+        // Carrega a biblioteca de upload
+        $this->load->library('upload', $config);
+
+        // Verifica se o upload foi bem-sucedido
+        if ($this->upload->do_upload('imagem')) {
+            return $this->upload->data('file_name');
+        } else {
+            return false;
+        }
     }
 }

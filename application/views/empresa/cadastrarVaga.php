@@ -18,9 +18,20 @@
         <div class="w3-container">
             <h2>Cadastrar Nova Vaga</h2>
 
+            <!-- Exibe mensagens de sucesso ou erro -->
+            <?php if ($this->session->flashdata('success')): ?>
+                <div class="w3-panel w3-green">
+                    <p><?php echo $this->session->flashdata('success'); ?></p>
+                </div>
+            <?php endif; ?>
 
+            <?php if ($this->session->flashdata('error')): ?>
+                <div class="w3-panel w3-red">
+                    <p><?php echo $this->session->flashdata('error'); ?></p>
+                </div>
+            <?php endif; ?>
 
-            <form>
+            <form action="<?php echo base_url('empresa/cadastrarVaga'); ?>" method="POST" enctype="multipart/form-data">
                 <div class="w3-section">
                     <label for="nome"><b>Nome da Vaga</b></label>
                     <input class="w3-input w3-border" type="text" name="nome" required>
@@ -35,18 +46,7 @@
                 </div>
                 <button type="submit" class="w3-button w3-green">Cadastrar Vaga</button>
             </form>
-            <!-- Exibe mensagens de sucesso ou erro -->
-            <?php if ($this->session->flashdata('success')): ?>
-                <div class="w3-panel w3-green">
-                    <p><?php echo $this->session->flashdata('success'); ?></p>
-                </div>
-            <?php endif; ?>
-
-            <?php if ($this->session->flashdata('error')): ?>
-                <div class="w3-panel w3-red">
-                    <p><?php echo $this->session->flashdata('error'); ?></p>
-                </div>
-            <?php endif; ?>
+        
         </div>
 
     </div>
