@@ -251,7 +251,7 @@ class Usuario extends CI_Controller
     
     // Configuração da paginação
     $config['base_url'] = site_url('usuario/homeUsuario');
-    $config['total_rows'] = $this->Usuario_model->get_vagas_count(); // Número total de vagas no banco de dados
+    $config['total_rows'] = $this->Usuario_model; // Número total de vagas no banco de dados
     $config['per_page'] = 5; // Número de vagas por página
     $config['uri_segment'] = 3; // O segmento da URI para a página (exemplo: /pagina/2)
     
