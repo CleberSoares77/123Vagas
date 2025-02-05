@@ -251,4 +251,15 @@ class Usuario extends CI_Controller
         $this->load->view('usuario/home_usuario', $data);
     }
 
+	public function testarBanco()
+{
+    $this->load->model('Empresa_Model');
+    $vagas = $this->Empresa_Model->getVagas();
+
+    echo "<pre>";
+    print_r($vagas); // Exibe os dados recuperados
+    echo "</pre>";
+}
+
+
 }
