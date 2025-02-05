@@ -161,7 +161,7 @@ class Empresa extends CI_Controller
                 ];
 
                 // Salva os dados no banco
-                if ($this->Empresa_Model->salvarVaga($dados)) {
+                if ($this->Empresa_model->salvarVaga($dados)) {
                     $this->session->set_flashdata('success', 'Vaga cadastrada com sucesso!');
                 } else {
                     $this->session->set_flashdata('error', 'Erro ao cadastrar a vaga.');
