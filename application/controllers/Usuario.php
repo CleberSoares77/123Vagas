@@ -248,7 +248,7 @@ class Usuario extends CI_Controller
 {
     $vagas = $this->Usuario_model->getVagas(); // Obtém as vagas do banco
     $data['vagas'] = $vagas; // Passa as vagas para a view
-    $this->load->view('usuario/home_usuario', $data); // Carrega a view com os dados
+    $this->load->view('/usuario/homeUsuario', $data); // Carrega a view com os dados
 }
 
 	
