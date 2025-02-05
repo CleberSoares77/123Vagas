@@ -12,18 +12,20 @@
 </style>
 
 <body>
-<?php if (!empty($vagas)) : ?>
-    <?php foreach ($vagas as $vaga) : ?>
-        <div class="w3-col m4">
-            <div class="w3-card">
-                <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>" style="width:100%">
-                <div class="w3-container">
-                    <h4><b><?= $vaga->nome ?></b></h4>
-                    <p><?= $vaga->descricao ?></p>
+<?php if (isset($vagas) && !empty($vagas)) : ?>
+    <div class="w3-row-padding">
+        <?php foreach ($vagas as $vaga) : ?>
+            <div class="w3-col m4">
+                <div class="w3-card">
+                    <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->titulo ?>" style="width:100%">
+                    <div class="w3-container">
+                        <h4><b><?= htmlspecialchars($vaga->titulo) ?></b></h4>
+                        <p><?= nl2br(htmlspecialchars($vaga->descricao)) ?></p>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
 <?php else : ?>
     <p>Nenhuma vaga cadastrada.</p>
 <?php endif; ?>
