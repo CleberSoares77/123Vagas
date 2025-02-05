@@ -20,13 +20,13 @@
     }
 
     .vaga-card {
-      width: 50%;
+      width: 100%;
       margin-bottom: 20px;
       box-sizing: border-box;
     }
 
     .vaga-card img {
-      width: 50%;
+      width: 100%;
       height: auto;
       cursor: pointer;
     }
