@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .w3-container {
+      width: 80%;
+      max-width: 800px;
+    }
+
     .vaga-card {
       width: 50%;
       margin-bottom: 20px;
@@ -30,7 +44,7 @@
 <body>
 
   <div class="w3-container">
-    <h2>Vagas Cadastradas</h2>
+    <h2 style="text-align: center;">Vagas Cadastradas</h2>
     
     <?php if (!empty($vagas)) : ?>
       <div>
@@ -45,7 +59,7 @@
         <?php endforeach; ?>
       </div>
     <?php else : ?>
-      <p>Nenhuma vaga cadastrada.</p>
+      <p style="text-align: center;">Nenhuma vaga cadastrada.</p>
     <?php endif; ?>
 
   </div>
