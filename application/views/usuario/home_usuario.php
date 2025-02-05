@@ -14,6 +14,9 @@
 <body>
   <div class="w3-container">
     <h2>Vagas Cadastradas</h2>
+    
+    <pre><?php print_r($vagas); ?></pre> <!-- Teste se os dados chegam -->
+
     <?php if (!empty($vagas)) : ?>
       <div class="w3-row-padding">
         <?php foreach ($vagas as $vaga) : ?>
