@@ -6,13 +6,13 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
     .vaga-card {
-      width: 100%;
+      width: 50%;
       margin-bottom: 20px;
       box-sizing: border-box;
     }
 
     .vaga-card img {
-      width: 100%;
+      width: 50%;
       height: auto;
     }
 
