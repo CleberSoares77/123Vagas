@@ -245,11 +245,23 @@ class Usuario extends CI_Controller
 		}
 	}
 	public function homeUsuario()
-{
-    $vagas = $this->Usuario_model->getVagas(); // Obtém as vagas do banco
-    $data['vagas'] = $vagas; // Passa as vagas para a view
-    $this->load->view('usuario/home_usuario', $data); // Carrega a view com os dados
-}
+	{
+		// Obtém as vagas do banco de dados
+		$vagas = $this->Usuario_model->getVagas();
+	
+		// Verifique se $vagas não está vazio
+		if ($vagas) {
+			// Passa as vagas para a view
+			$data['vagas'] = $vagas;
+		} else {
+			// Se não houver vagas, passamos um array vazio para evitar erros na view
+			$data['vagas'] = [];
+		}
+	
+		// Carrega a view com os dados
+		$this->load->view('usuario/home_usuario', $data);
+	}
+	
 
 	
 

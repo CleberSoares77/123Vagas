@@ -97,19 +97,11 @@ class Usuario_model extends CI_Model
         $this->db->where('email', $email);
         $this->db->update('cadastro_usuario', $data);
     }
-
 	public function getVagas()
 	{
-		$query = $this->db->get('vagas'); // Busca todas as vagas
-		$result = $query->result(); // Retorna o resultado
-	
-		echo "<pre>";
-		print_r($result);
-		echo "</pre>";
-		exit; // Para a execução para analisar o que retorna
-	
-		return $result;
+		return $this->db->get('vagas')->result();
 	}
+	
 	
   
 }
