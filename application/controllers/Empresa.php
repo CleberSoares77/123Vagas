@@ -171,6 +171,7 @@ class Empresa extends CI_Controller
             } else {
                 echo 'Erro ao cadastrar vaga!';
             }
+			$this->load->view('empresa/cadastrarVaga');
 		}
 	}
 }
