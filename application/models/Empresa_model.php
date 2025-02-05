@@ -55,10 +55,15 @@ class Empresa_model extends CI_Model {
 		{
 			parent::__construct();
 		}
-		
+
 		public function salvarVaga($dados)
 		{
 			// Insere os dados na tabela de vagas
 			return $this->db->insert('vagas', $dados);
+		}
+
+		public function getVagas()
+		{
+			return $this->db->get('vagas')->result(); // Busca todas as vagas no banco
 		}
 }

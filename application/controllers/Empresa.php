@@ -196,4 +196,10 @@ class Empresa extends CI_Controller
             return false;
         }
     }
+
+	public function listarVagas()
+    {
+        $data['vagas'] = $this->Empresa_model->getVagas(); // Pega as vagas do banco
+        $this->load->view('listar_vagas', $data); // Carrega a view com os dados
+    }
 }
