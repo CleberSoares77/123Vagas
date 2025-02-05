@@ -5,14 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
-    .vagas-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
     .vaga-card {
-      width: 30%;
+      width: 100%;
       margin-bottom: 20px;
       box-sizing: border-box;
     }
@@ -31,17 +25,6 @@
       margin-bottom: 10px;
     }
 
-    @media (max-width: 768px) {
-      .vaga-card {
-        width: 48%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .vaga-card {
-        width: 100%;
-      }
-    }
   </style>
 </head>
 <body>
@@ -50,7 +33,7 @@
     <h2>Vagas Cadastradas</h2>
     
     <?php if (!empty($vagas)) : ?>
-      <div class="vagas-container">
+      <div>
         <?php foreach ($vagas as $vaga) : ?>
           <div class="vaga-card w3-card">
             <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>">
