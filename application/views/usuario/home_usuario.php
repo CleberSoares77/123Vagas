@@ -1,64 +1,140 @@
 <!DOCTYPE html>
-<html>
-<title>SOSVagas</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<html lang="pt-br">
+<head>
+  <title>SOSVagas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
 
-<style>
-  .link {
-    text-align: right;
-    margin-top: 10px;
-  }
+    .w3-container {
+      width: 80%;
+      max-width: 800px;
+    }
 
-  /* Estilo para as imagens no slideshow */
-  .mySlides {
-    display: none;
-  }
+    .vaga-card {
+      width: 50%;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
 
-  .w3-container h4 {
-    margin-top: 10px;
-    font-size: 20px;
-    text-align: center;
-  }
-</style>
+    .vaga-card img {
+      width: 50%;
+      height: auto;
+      cursor: pointer;
+    }
 
+    .vaga-card .w3-container {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .vaga-card h4 {
+      margin-bottom: 10px;
+    }
+
+    /* Estilo do modal */
+    .modal {
+      display: none; /* Escondido por padrão */
+      position: fixed; /* Fica fixo na tela */
+      z-index: 1; /* Fica por cima do conteúdo */
+      left: 0;
+      top: 0;
+      width: 70%; /* Full width */
+      height: 70%; /* Full height */
+      overflow: auto; /* Se necessário, aparece a barra de rolagem */
+      background-color: rgb(0, 0, 0); /* Cor de fundo */
+      background-color: rgba(0, 0, 0, 0.9); /* Fundo preto com opacidade */
+    }
+
+    /* Estilo da imagem do modal */
+    .modal-content {
+      margin: 5% auto;
+      display: block;
+      max-width: 90%; /* Ajusta a largura da imagem */
+      max-height: 80vh; /* Limita a altura da imagem */
+      object-fit: contain; /* Ajusta a imagem para se adaptar à caixa sem distorcer */
+    }
+
+    /* Estilo para fechar o modal */
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
 <body>
+
   <div class="w3-container">
-    <h2>Vagas Cadastradas</h2>
+    <h2 style="text-align: center;">Vagas Cadastradas</h2>
     
     <?php if (!empty($vagas)) : ?>
-    <div class="w3-content w3-display-container">
-      <?php foreach ($vagas as $vaga) : ?>
-        <div class="mySlides w3-display-container">
-            <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>" style="width:100%">
+      <div>
+        <?php foreach ($vagas as $vaga) : ?>
+          <div class="vaga-card w3-card">
+            <img src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>" onclick="openModal('modal-<?= $vaga->id ?>')">
             <div class="w3-container">
-                <h4><b><?= $vaga->nome ?></b></h4>
-                <p><?= $vaga->descricao ?></p>
+              <h4><b><?= $vaga->nome ?></b></h4>
+              <p><?= $vaga->descricao ?></p>
             </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
+          </div>
+
+          <!-- Modal de Imagem -->
+          <div id="modal-<?= $vaga->id ?>" class="modal">
+            <span class="close" onclick="closeModal('modal-<?= $vaga->id ?>')">&times;</span>
+            <img class="modal-content" id="img-<?= $vaga->id ?>" src="<?= base_url($vaga->imagem) ?>" alt="<?= $vaga->nome ?>">
+          </div>
+        <?php endforeach; ?>
+      </div>
     <?php else : ?>
-        <p>Nenhuma vaga cadastrada.</p>
+      <p style="text-align: center;">Nenhuma vaga cadastrada.</p>
     <?php endif; ?>
-    
+
   </div>
 
   <script>
-    // Função do slideshow para exibir as vagas
-    var slideIndex = 0;
-    showSlides();
+    // Função para abrir o modal
+    function openModal(modalId) {
+      var modal = document.getElementById(modalId);
+      modal.style.display = "block";
+    }
 
-    function showSlides() {
-      var slides = document.getElementsByClassName("mySlides");
-      for (var i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+    // Função para fechar o modal
+    function closeModal(modalId) {
+      var modal = document.getElementById(modalId);
+      modal.style.display = "none";
+    }
+
+    // Fechar o modal se o usuário clicar fora da imagem
+    window.onclick = function(event) {
+      var modals = document.getElementsByClassName('modal');
+      for (var i = 0; i < modals.length; i++) {
+        if (event.target == modals[i]) {
+          modals[i].style.display = "none";
+        }
       }
-      slideIndex++;
-      if (slideIndex > slides.length) {slideIndex = 1}    
-      slides[slideIndex-1].style.display = "block";  
-      setTimeout(showSlides, 3000); // Muda a imagem a cada 3 segundos
     }
   </script>
+
 </body>
 </html>

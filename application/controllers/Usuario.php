@@ -246,20 +246,29 @@ class Usuario extends CI_Controller
 	}
 	public function homeUsuario()
 	{
-		// Obtém as vagas do banco de dados
-		$vagas = $this->Usuario_model->getVagas();
-	
-		// Verifique se $vagas não está vazio
-		if ($vagas) {
-			// Passa as vagas para a view
-			$data['vagas'] = $vagas;
-		} else {
-			// Se não houver vagas, passamos um array vazio para evitar erros na view
-			$data['vagas'] = [];
-		}
-	
-		// Carrega a view com os dados
-		$this->load->view('usuario/home_usuario', $data);
+	// Carregar a biblioteca de paginação
+    $this->load->library('pagination');
+    
+    // Configuração da paginação
+    $config['base_url'] = site_url('usuario/homeUsuario');
+    $config['total_rows'] = $this->Usuario_model->get_vagas_count(); // Número total de vagas no banco de dados
+    $config['per_page'] = 5; // Número de vagas por página
+    $config['uri_segment'] = 3; // O segmento da URI para a página (exemplo: /pagina/2)
+    
+    // Inicializar a biblioteca de paginação
+    $this->pagination->initialize($config);
+
+    // Definir o número da página atual
+    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+    // Recuperar as vagas com paginação
+    $data['vagas'] = $this->Usuario_model->get_vagas($config['per_page'], $page);
+
+    // Passar os links da paginação
+    $data['pagination'] = $this->pagination->create_links();
+
+    // Carregar a view
+    $this->load->view('usuario/home_usuario', $data);
 	}
 	
 
