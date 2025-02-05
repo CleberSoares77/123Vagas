@@ -141,42 +141,41 @@ class Empresa extends CI_Controller
 			return false;
 		}
 	}
+	public function cadastrarVaga() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Captura os dados do formulário
+            $data = [
+                'nome' => $this->input->post('nome'),
+                'descricao' => $this->input->post('descricao')
+            ];
 
-	
+            // Upload da imagem
+            if (!empty($_FILES['imagem']['name'])) {
+                $config['upload_path']   = './uploads/';
+                $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                $config['max_size']      = 2048; // 2MB
+                $this->load->library('upload', $config);
 
-	public function cadastrarVaga()
-	{
-		// Suponha que você tenha um modelo 'Empresa_model' para salvar as informações
-		$this->load->model('Empresa_model');
-		
-		// Pegue os dados do formulário
-		$nome = $this->input->post('nome');
-		$descricao = $this->input->post('descricao');
-		//$imagem = $this->uploadImagem(); // Suponha que você tenha um método para upload de imagem
-	
-		// Verifique se os dados foram recebidos corretamente
-		if ($nome && $descricao) {
-			// Salve os dados no banco de dados
-			$dados = [
-				'nome' => $nome,
-				'descricao' => $descricao,
-				
-			];
-	
-			if ($this->Empresa_model->salvarVaga($dados)) {
-				// Mensagem de sucesso
-				$this->session->set_flashdata('success', 'Vaga cadastrada com sucesso!');
-			} else {
-				// Mensagem de erro ao salvar
-				$this->session->set_flashdata('error', 'Erro ao cadastrar a vaga.');
-			}
-		} else {
-			// Caso algum dado não tenha sido enviado
-			$this->session->set_flashdata('error', 'Por favor, preencha todos os campos.');
-		}
-	
-		// Redirecione para a página de cadastro
-		redirect('empresa/cadastrarVaga');
-	}
-	
+                if ($this->upload->do_upload('imagem')) {
+                    $uploadData = $this->upload->data();
+                    $data['imagem'] = 'uploads/' . $uploadData['file_name'];
+                } else {
+                    $this->session->set_flashdata('error', 'Erro ao fazer upload da imagem.');
+                    redirect('empresa/cadastrarVaga');
+                    return;
+                }
+            }
+
+            // Salva a vaga no banco
+            if ($this->Empresa_model->cadastrar($data)) {
+                $this->session->set_flashdata('success', 'Vaga cadastrada com sucesso!');
+            } else {
+                $this->session->set_flashdata('error', 'Erro ao cadastrar a vaga.');
+            }
+
+            redirect('empresa/cadastrarVaga'); // Redireciona para a mesma página
+        }
+
+        $this->load->view('empresa/cadastrarVaga'); // Carrega a página do formulário
+    }
 }
