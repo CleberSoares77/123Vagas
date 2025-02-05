@@ -58,8 +58,9 @@
     .modal-content {
       margin: 5% auto;
       display: block;
-      width: 80%;
-      max-width: 700px;
+      max-width: 90%; /* Ajusta a largura da imagem */
+      max-height: 80vh; /* Limita a altura da imagem */
+      object-fit: contain; /* Ajusta a imagem para se adaptar à caixa sem distorcer */
     }
 
     /* Estilo para fechar o modal */
