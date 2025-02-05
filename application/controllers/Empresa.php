@@ -197,9 +197,9 @@ class Empresa extends CI_Controller
         }
     }
 
-	public function listarVagas()
+	public function homeUsuario()
     {
-        $data['vagas'] = $this->Empresa_model->getVagas(); // Pega as vagas do banco
-        $this->load->view('listar_vagas', $data); // Carrega a view com os dados
+        $data['vagas'] = $this->Empresa_model->getVagas(); // Buscar vagas no banco
+        $this->load->view('usuario/home_usuario', $data); // Passar os dados para a view
     }
 }
