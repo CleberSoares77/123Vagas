@@ -100,8 +100,16 @@ class Usuario_model extends CI_Model
 
 	public function getVagas()
 	{
-		$query = $this->db->get('vagas');
-		return $query->result();
+		$query = $this->db->get('vagas'); // Busca todas as vagas
+		$result = $query->result(); // Retorna o resultado
+	
+		echo "<pre>";
+		print_r($result);
+		echo "</pre>";
+		exit; // Para a execução para analisar o que retorna
+	
+		return $result;
 	}
+	
   
 }

@@ -245,9 +245,16 @@ class Usuario extends CI_Controller
 		}
 	}
 	public function homeUsuario()
-    {
-        $data['vagas'] = $this->Usuario_model->getVagas(); // Obtém as vagas do banco
-        $this->load->view('usuario/home_usuario', $data);
-    }
+	{
+		$vagas = $this->Usuario_model->getVagas(); // Obtém as vagas
+		echo "<pre>";
+		print_r($vagas);
+		echo "</pre>";
+		exit; // Para ver o resultado e interromper a execução
+	
+		$data['vagas'] = $vagas;
+		$this->load->view('usuario/home_usuario', $data);
+	}
+	
 
 }
