@@ -22,9 +22,9 @@
         <?php foreach ($vagas as $vaga) : ?>
           <div class="w3-col m4">
             <div class="w3-card">
-              <img src="<?= base_url($vaga->imagem) ?>" alt="<?= htmlspecialchars($vaga->titulo) ?>" style="width:100%">
+              <img src="<?= base_url($vaga->imagem) ?>" alt="<?= htmlspecialchars($vaga->nome) ?>" style="width:100%">
               <div class="w3-container">
-                <h4><b><?= htmlspecialchars($vaga->titulo) ?></b></h4>
+                <h4><b><?= htmlspecialchars($vaga->nome) ?></b></h4>
                 <p><?= nl2br(htmlspecialchars($vaga->descricao)) ?></p>
               </div>
             </div>
