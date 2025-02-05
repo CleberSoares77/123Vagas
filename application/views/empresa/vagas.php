@@ -31,7 +31,7 @@
         </div>
       <?php endif; ?>
 
-      <form action="<?php echo base_url('Empresa/data'); ?>" method="POST" enctype="multipart/form-data">
+      <form action="<?php echo base_url('Empresa/cadastrarVaga'); ?>" method="POST" enctype="multipart/form-data">
         <div class="w3-section">
           <label for="nome"><b>Nome da Vaga</b></label>
           <input class="w3-input w3-border" type="text" name="nome" required>
