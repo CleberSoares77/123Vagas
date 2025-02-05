@@ -246,15 +246,15 @@ class Usuario extends CI_Controller
 	}
 	public function homeUsuario()
     {
-        $data['vagas'] = $this->Empresa_Model->getVagas(); // Obtém as vagas do banco
+        $data['vagas'] = $this->Usuario_model->getVagas(); // Obtém as vagas do banco
         var_dump($data['vagas']); // Adiciona essa linha para depuração
         $this->load->view('usuario/home_usuario', $data);
     }
 
 	public function testarBanco()
 {
-    $this->load->model('Empresa_Model');
-    $vagas = $this->Empresa_Model->getVagas();
+    $this->load->model('Usuario_model');
+    $vagas = $this->Usuario_model->getVagas();
 
     echo "<pre>";
     print_r($vagas); // Exibe os dados recuperados
