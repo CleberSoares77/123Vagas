@@ -29,7 +29,7 @@
 
     <div class="w3-container">
       <h2>Cadastrar Nova Vaga</h2>
-      <form action="/tcc/empresa/cadastrar-vaga" method="POST" enctype="multipart/form-data">
+      <form action="/empresa/cadastrarVaga" method="POST" enctype="multipart/form-data">
         @csrf <!-- Adicione isso se estiver usando Laravel para proteção CSRF -->
         <div class="w3-section">
           <label for="nome"><b>Nome da Vaga</b></label>

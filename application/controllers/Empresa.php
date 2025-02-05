@@ -139,4 +139,38 @@ class Empresa extends CI_Controller
 			return false;
 		}
 	}
+	public function cadastrarVaga()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Configuração para upload da imagem
+            $config['upload_path']   = './uploads/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size']      = 2048; // 2MB
+
+            $this->load->library('upload', $config);
+
+            // Verifica se a imagem foi enviada
+            if (!$this->upload->do_upload('imagem')) {
+                echo 'Erro ao fazer upload da imagem: ' . $this->upload->display_errors();
+                return;
+            } else {
+                $uploadData = $this->upload->data();
+                $imagemPath = 'uploads/' . $uploadData['file_name']; // Caminho salvo no banco
+            }
+
+            // Dados do formulário
+            $data = [
+                'nome'      => $this->input->post('nome'),
+                'descricao' => $this->input->post('descricao'),
+                'imagem'    => $imagemPath
+            ];
+
+            // Insere no banco
+            if ($this->Empresa_model->cadastrar($data)) {
+                echo 'Vaga cadastrada com sucesso!';
+            } else {
+                echo 'Erro ao cadastrar vaga!';
+            }
+		}
+	}
 }

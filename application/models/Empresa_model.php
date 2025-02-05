@@ -50,5 +50,9 @@ class Empresa_model extends CI_Model {
 				return false;  
 			} 
 		}
+		public function cadastrar($data)
+		{
+			return $this->db->insert('vagas', $data);
+		}
 
 }
