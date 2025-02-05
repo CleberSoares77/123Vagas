@@ -9,7 +9,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: 70vh;
       margin: 0;
       background-color: #f4f4f4;
     }
@@ -26,7 +26,7 @@
     }
 
     .vaga-card img {
-      width: 100%;
+      width: 70%;
       height: auto;
       cursor: pointer;
     }
@@ -47,8 +47,8 @@
       z-index: 1; /* Fica por cima do conteúdo */
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
+      width: 70%; /* Full width */
+      height: 70%; /* Full height */
       overflow: auto; /* Se necessário, aparece a barra de rolagem */
       background-color: rgb(0, 0, 0); /* Cor de fundo */
       background-color: rgba(0, 0, 0, 0.9); /* Fundo preto com opacidade */
