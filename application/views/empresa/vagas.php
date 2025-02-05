@@ -7,30 +7,31 @@
 <style>
   .link {
     text-align: right;
-    /* Alinha o link "Voltar" à direita */
     margin-top: 10px;
   }
 </style>
 
 <body>
 
-  </div>
-
   <!-- Page Content -->
   <div style="margin-left:8%">
-    <style>
-      .search-icon {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    </style>
-
     <div class="w3-container">
       <h2>Cadastrar Nova Vaga</h2>
-      <form action="/cadastrarVaga" method="POST" enctype="multipart/form-data">
-        @csrf <!-- Adicione isso se estiver usando Laravel para proteção CSRF -->
+
+      <!-- Exibe mensagens de sucesso ou erro -->
+      <?php if ($this->session->flashdata('success')): ?>
+        <div class="w3-panel w3-green">
+          <p><?php echo $this->session->flashdata('success'); ?></p>
+        </div>
+      <?php endif; ?>
+
+      <?php if ($this->session->flashdata('error')): ?>
+        <div class="w3-panel w3-red">
+          <p><?php echo $this->session->flashdata('error'); ?></p>
+        </div>
+      <?php endif; ?>
+
+      <form action="<?php echo base_url('empresa/cadastrarVaga'); ?>" method="POST" enctype="multipart/form-data">
         <div class="w3-section">
           <label for="nome"><b>Nome da Vaga</b></label>
           <input class="w3-input w3-border" type="text" name="nome" required>
@@ -47,23 +48,7 @@
       </form>
     </div>
 
-    <footer class="container">
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-    </script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!--<img src="img_car.jpg" alt="Car" style="width:100%">--->
-
-    <div class="w3-container">
-
-    </div>
-
   </div>
-
-
 </body>
 
 </html>
