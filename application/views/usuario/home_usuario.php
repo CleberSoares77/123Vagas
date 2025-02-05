@@ -9,7 +9,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 70vh;
+      height: 100vh;
       margin: 0;
       background-color: #f4f4f4;
     }
@@ -20,13 +20,13 @@
     }
 
     .vaga-card {
-      width: 100%;
+      width: 50%;
       margin-bottom: 20px;
       box-sizing: border-box;
     }
 
     .vaga-card img {
-      width: 70%;
+      width: 50%;
       height: auto;
       cursor: pointer;
     }
