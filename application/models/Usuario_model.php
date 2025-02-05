@@ -98,6 +98,10 @@ class Usuario_model extends CI_Model
         $this->db->update('cadastro_usuario', $data);
     }
 
-	
+	public function getVagas()
+	{
+		$query = $this->db->get('vagas');
+		return $query->result();
+	}
   
 }

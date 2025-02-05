@@ -62,9 +62,4 @@ class Empresa_model extends CI_Model {
 			return $this->db->insert('vagas', $dados);
 		}
 
-		public function getVagas()
-		{
-			$query = $this->db->get('vagas');
-			return $query->result();
-		}
 }
