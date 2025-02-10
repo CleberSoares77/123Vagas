@@ -141,7 +141,8 @@ class Usuario extends CI_Controller
 
 				// Verifica se o email foi enviado com sucesso
 				if ($result) {
-					echo 'Cadastrou e enviou email de boas-vindas';
+					echo 'Seu cadastro foi realizado com sucesso, efetue o login e acesse sua conta!';
+					redirect('usuario/login');
 				} else {
 					echo 'Cadastrou, mas ocorreu um erro ao enviar o email';
 				}
@@ -150,7 +151,7 @@ class Usuario extends CI_Controller
 			}
 		}
 
-		$this->template->load('template', 'usuario/login');
+		$this->template->load('template', 'usuario/cadastro');
 	}
 
 
