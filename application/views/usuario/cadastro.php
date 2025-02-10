@@ -105,14 +105,17 @@
              title="Digite um email válido.">
     </div>
 
-    <!-- Campo Data de Nascimento -->
-    <div class="mb-3 col-6">
-      <label for="dataNasc" class="highlight-label">Data de Nascimento:</label>
-      <input type="date" id="dataNasc" name="dataNasc" class="form-control"
-             value="<?= isset($usuario) ? $usuario["dataNasc"] : "" ?>"
-             required
-             title="Selecione a data de nascimento.">
-    </div>
+ <!-- Campo Data de Nascimento -->
+<div class="mb-3 col-6">
+  <label for="dataNasc" class="highlight-label">Data de Nascimento:</label>
+  <input type="date" id="dataNasc" name="dataNasc" class="form-control"
+         value="<?= isset($usuario) ? $usuario["dataNasc"] : "" ?>"
+         required
+         min="1900-01-01"
+         max="<?= date('Y-m-d'); ?>"
+         title="Selecione uma data de nascimento válida.">
+</div>
+
 
     <!-- Campo Gênero -->
     <div class="mb-3 col-6">
