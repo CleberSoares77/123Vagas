@@ -150,7 +150,7 @@ class Usuario extends CI_Controller
 			}
 		}
 
-		$this->template->load('template', 'usuario/cadastro');
+		$this->template->load('template', 'usuario/login');
 	}
 
 
