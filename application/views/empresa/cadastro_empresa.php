@@ -78,15 +78,16 @@
              title="Digite um nome válido (apenas letras e espaços, no mínimo 2 caracteres).">
     </div>
 
-    <!-- Campo CNPJ -->
-    <div class="mb-3 col-6">
-      <label for="cnpj" class="highlight-label">CNPJ:</label>
-      <input type="text" id="cnpj" name="cnpj" class="form-control"
-             value="<?= isset($empresa) ? $empresa["cnpj"] : "" ?>"
-             required
-             pattern="\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}"
-             title="Digite um CNPJ válido no formato 00.000.000/0000-00.">
-    </div>
+<!-- Campo CNPJ -->
+<div class="mb-3 col-6">
+  <label for="cnpj" class="highlight-label">CNPJ:</label>
+  <input type="text" id="cnpj" name="cnpj" class="form-control"
+         value="<?= isset($empresa) ? $empresa["cnpj"] : "" ?>"
+         required
+         pattern="^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}\-[0-9]{2}$"
+         title="Digite um CNPJ válido no formato 00.000.000/0000-00.">
+</div>
+
 
     <!-- Campo Contato -->
     <div class="mb-3 col-6">
