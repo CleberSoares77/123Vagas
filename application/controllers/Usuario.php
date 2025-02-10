@@ -142,7 +142,7 @@ class Usuario extends CI_Controller
 				// Verifica se o email foi enviado com sucesso
 				if ($result) {
 					echo 'Seu cadastro foi realizado com sucesso, efetue o login e acesse sua conta!';
-					redirect('usuario/login');
+					redirect('usuario/index');
 				} else {
 					echo 'Cadastrou, mas ocorreu um erro ao enviar o email';
 				}
