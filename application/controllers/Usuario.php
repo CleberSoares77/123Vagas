@@ -227,7 +227,7 @@ class Usuario extends CI_Controller
 				'home_usuario' => 1
 			);
 			$data['email'] = $this->Usuario_model->data($data);
-			redirect('usuario/homeUsuario');
+			redirect('usuario/home_usuario');
 		} else {
 			$this->template->load('template','error');
 		}

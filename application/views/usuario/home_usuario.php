@@ -88,20 +88,6 @@
 
   <div class="w3-container">
   <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-  <h1 style="text-align: center;">Vagas Cadastradas</h1>
-    <h2 style="text-align: center;">Vagas Cadastradas</h2>
 
     <?php if (!empty($vagas)) : ?>
       <div id="vaga-container">
