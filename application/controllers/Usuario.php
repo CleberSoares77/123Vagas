@@ -34,7 +34,6 @@ class Usuario extends CI_Controller
 		// Carrega a view com os dados
 		$this->load->view('usuario/home_usuario', $data);
 
-		$this->load->view('usuario/home_usuario');
 	}
 
 	public function esqueceu_senha()
