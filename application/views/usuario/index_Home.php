@@ -62,9 +62,6 @@
 
       <form action="/recuperar-senha" method="POST">
         <div class="link">
-          <input type="search" class="form-control dropdown-toggle" placeholder="Buscar..." id="top-search">
-          <span class="mdi mdi-magnify search-icon"></span>
-          <button class="input-group-text btn btn-primary" type="submit">Buscar</button>
         </div>
       </form>
 
