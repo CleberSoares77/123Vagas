@@ -19,13 +19,27 @@ class Usuario extends CI_Controller
 
 	public function home_usuario()
 	{
+		// Obtém as vagas do banco de dados
+		$vagas = $this->Usuario_model->getVagas();
+
+		// Verifique se $vagas não está vazio
+		if ($vagas) {
+			// Passa as vagas para a view
+			$data['vagas'] = $vagas;
+		} else {
+			// Se não houver vagas, passamos um array vazio para evitar erros na view
+			$data['vagas'] = [];
+		}
+
+		// Carrega a view com os dados
+		$this->load->view('usuario/home_usuario', $data);
 
 		$this->load->view('usuario/home_usuario');
 	}
 
 	public function esqueceu_senha()
 	{
-		
+
 
 		$this->load->view('esqueceu_senha');
 	}
@@ -227,9 +241,9 @@ class Usuario extends CI_Controller
 				'home_usuario' => 1
 			);
 			$data['email'] = $this->Usuario_model->data($data);
-			redirect('usuario/homeUsuario');
+			redirect('usuario/home_usuario');
 		} else {
-			$this->template->load('template','error');
+			$this->template->load('template', 'error');
 		}
 	}
 
@@ -244,25 +258,10 @@ class Usuario extends CI_Controller
 			return false;
 		}
 	}
-	public function homeUsuario()
+
+
+	public function index_Home()
 	{
-		// Obtém as vagas do banco de dados
-		$vagas = $this->Usuario_model->getVagas();
-	
-		// Verifique se $vagas não está vazio
-		if ($vagas) {
-			// Passa as vagas para a view
-			$data['vagas'] = $vagas;
-		} else {
-			// Se não houver vagas, passamos um array vazio para evitar erros na view
-			$data['vagas'] = [];
-		}
-	
-		// Carrega a view com os dados
-		$this->load->view('usuario/home_usuario', $data);
+		$this->load->view('usuario/index_Home');
 	}
-	
-
-	
-
 }
