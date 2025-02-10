@@ -116,43 +116,65 @@ class Usuario extends CI_Controller
 	}
 
 	public function cadastro()
-	{
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$data = [
-				'nome' => $this->input->post('nome'),
-				'sobrenome' => $this->input->post('sobrenome'),
-				'contato' => $this->input->post('contato'),
-				'email' => $this->input->post('email'),
-				'dataNasc' => $this->input->post('dataNasc'),
-				'genero' => $this->input->post('genero'),
-				'senha' => $this->input->post('senha')
-			];
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $data = [
+            'nome'      => $this->input->post('nome'),
+            'sobrenome' => $this->input->post('sobrenome'),
+            'contato'   => $this->input->post('contato'),
+            'email'     => $this->input->post('email'),
+            'dataNasc'  => $this->input->post('dataNasc'),
+            'genero'    => $this->input->post('genero'),
+            'senha'     => $this->input->post('senha')
+        ];
 
-			// Efetua o cadastro e valida se foi cadastrado
-			if ($this->Usuario_model->cadastrar($data)) {
-				// Envio do email após o cadastro
-				$to = $data['email'];
-				$subject = "Bem-vindo ao nosso sistema";
-				$message = "Olá " . $data['nome'] . ",\r\n\r\nSeu cadastro foi realizado com sucesso!\r\n\r\nAtenciosamente,\r\nEquipe do Sistema";
-				$header = "From: seu-email@exemplo.com \r\n";
+        // Efetua o cadastro e valida se foi cadastrado
+        if ($this->Usuario_model->cadastrar($data)) {
 
-				// Envio do email
-				$result = mail($to, $subject, $message, $header);
+            // Exemplo de link para ativação ou acesso
+            $link = base_url('usuario/login');
 
-				// Verifica se o email foi enviado com sucesso
-				if ($result) {
-					echo 'Seu cadastro foi realizado com sucesso, efetue o login e acesse sua conta!';
-					redirect('index');
-				} else {
-					echo 'Cadastrou, mas ocorreu um erro ao enviar o email';
-				}
-			} else {
-				echo 'Ocorreu um erro ao cadastrar';
-			}
-		}
+            // Configurar os cabeçalhos para email HTML
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: seu-email@exemplo.com" . "\r\n";
 
-		$this->template->load('template', 'usuario/cadastro');
-	}
+            // Mensagem HTML com o link
+            $message = "
+            <html>
+            <head>
+              <title>Bem-vindo ao nosso sistema</title>
+            </head>
+            <body>
+              <p>Olá " . $data['nome'] . ",</p>
+              <p>Seu cadastro foi realizado com sucesso!</p>
+              <p>Para efetuar o login e acessar sua conta, clique no link abaixo:</p>
+              <p><a href='" . $link . "'>Acessar Conta</a></p>
+              <br>
+              <p>Atenciosamente,<br>Equipe do Sistema</p>
+            </body>
+            </html>
+            ";
+
+            // Envio do email
+            $to = $data['email'];
+            $subject = "Bem-vindo ao nosso sistema";
+            $result = mail($to, $subject, $message, $headers);
+
+            // Verifica se o email foi enviado com sucesso
+            if ($result) {
+                echo 'Seu cadastro foi realizado com sucesso, efetue o login e acesse sua conta!';
+            } else {
+                echo 'Cadastrou, mas ocorreu um erro ao enviar o email';
+            }
+        } else {
+            echo 'Ocorreu um erro ao cadastrar';
+        }
+    }
+
+    $this->template->load('template', 'usuario/cadastro');
+}
+
 
 
 	public function editar($id)
