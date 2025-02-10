@@ -132,7 +132,7 @@
         currentVaga = index;
       }
     }
-
+ 
     // Função para abrir o modal
     function openModal(modalId) {
       var modal = document.getElementById(modalId);
