@@ -8,14 +8,14 @@
   .link {
     text-align: right;
     /* Alinha o link "Voltar" à direita */
-    margin-top: 10px;
+    margin-top: 20px;
   }
 </style>
 
 <body>
 
   <!-- Sidebar -->
-  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:8%">
+  <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:12%">
     <h3 class="w3-bar-item">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
@@ -26,7 +26,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas" style="font-size:24px" viewBox="0 0 16 16">
     <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.292 9.292a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.292-9.292zM11.207 3L13 4.793 14.293 3.5 12.5 1.707 11.207 3zM10.5 3.707L2 12.207V14h1.793l8.5-8.5L10.5 3.707z" />
   </svg>
-  Vagas
+  Cadastrar Vagas
 </a>
 
     <a href="/tcc/empresa" class="w3-bar-item w3-button">
@@ -44,10 +44,10 @@
       Sair
     </a>
 
-  </div>
+    </div>
 
   <!-- Page Content -->
-  <div style="margin-left:8%">
+  <div style="margin-left:12%">
     <style>
       .search-icon {
         position: absolute;
@@ -62,9 +62,6 @@
 
       <form action="/recuperar-senha" method="POST">
         <div class="link">
-          <input type="search" class="form-control dropdown-toggle" placeholder="Buscar..." id="top-search">
-          <span class="mdi mdi-magnify search-icon"></span>
-          <button class="input-group-text btn btn-primary" type="submit">Buscar</button>
         </div>
       </form>
 
@@ -73,51 +70,14 @@
     <main role="main">
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Oportunidades de Emprego no Jequi</h1>
-          <p class="lead text-muted">ATENÇÃO! As vagas disponíveis são de totais responsabilidade do usuário que responde pela vaga.</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-          </p>
+          <h1 class="jumbotron-heading">Olá, seja muito bem-vindo! Você está em vagas no Jequi</h1>
+          <p class="lead text-muted"> Você está representando uma empresa! Informe algumas informações sobre a vaga e sua publicação, vá em Cadastrar Vaga. Obrigado! </p>
         </div>
       </section>
 
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
-            <!-- Card Loop -->
-            <?php
-// Exemplo de um array de empresas com imagens e informações
-$companies = [
-    ['image' => 'c:\Users\clebe\Downloads/Imagem do WhatsApp de 2024-08-09 à(s) 13.33.20_6768d331.jpg', 'name' => 'Vaga A', 'description' => 'Descrição da Vaga A'],
-    ['image' => 'uploads/vaga_b.jpg', 'name' => 'Vaga B', 'description' => 'Descrição da Vaga B'],
-    ['image' => 'uploads/vaga_c.jpg', 'name' => 'Vaga C', 'description' => 'Descrição da Vaga C'],
-    ['image' => 'uploads/vaga_d.jpg', 'name' => 'Vaga D', 'description' => 'Descrição da Vaga D'],
-    ['image' => 'uploads/vaga_e.jpg', 'name' => 'Vaga E', 'description' => 'Descrição da Vaga E'],
-    ['image' => 'uploads/vaga_f.jpg', 'name' => 'Vaga F', 'description' => 'Descrição da Vaga F'],
-];
-
-// Laço para exibir as empresas
-foreach ($companies as $company) {
-?>
-  <div class="col-md-4">
-    <div class="card mb-4 box-shadow">
-      <div class="text-center"> <!-- Centralizando a imagem -->
-        <img class="card-img-top mx-auto" src="<?php echo $company['image']; ?>" alt="Imagem da empresa">
-      </div>
-      <div class="card-body">
-        <h5 class="card-title"><?php echo $company['name']; ?></h5>
-        <p class="card-text"><?php echo $company['description']; ?></p>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-          </div>
-          <small class="text-muted">9 mins</small>
-        </div>
-      </div>
-    </div>
-  </div>
-<?php } ?>
 
             <!-- End Card Loop -->
           </div>
@@ -140,6 +100,25 @@ foreach ($companies as $company) {
     </div>
 
   </div>
+
+
+  </div>
+
+  <!-- Page Content -->
+  <div style="margin-left:8%">
+    <style>
+      .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    </style>
+
+    <div class="w3-container w3-teal">
+      <!--<h1>SOSVagas</h1>-->
+
+  
 
 
 </body>

@@ -157,7 +157,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" name="login" class="btn btn-primary btnLoginSubmit" value="Login" />
-                                        <a class="btn btn-link text-white btnForgetPwd">Esqueceu senha da empresa?</a>
+                                        <a href="empresa/esqueceu_senha" class="btn btn-link text-white btnForgetPwd">Esqueceu senha da empresa?</a>
                                     </div>
                                 </form>
                             </div>

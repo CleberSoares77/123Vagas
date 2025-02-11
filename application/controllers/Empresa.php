@@ -196,5 +196,9 @@ class Empresa extends CI_Controller
             return false;
         }
     }
+	public function esqueceu_senha()
+	{
+		$this->load->view('empresa/esqueceu_senha');
+	}
 
 }
