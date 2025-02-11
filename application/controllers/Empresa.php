@@ -201,4 +201,21 @@ class Empresa extends CI_Controller
 		$this->load->view('empresa/esqueceu_senha');
 	}
 
+	public function lista_vagas() {
+		$data['vagas'] = $this->Empresa_model->get_vagas();  // Certifique-se de que o método retorna as vagas
+		$this->load->view('empresa/lista_vagas', $data);    // Nome da view criada
+	}
+
+	public function excluir_vaga($id) {
+		// Carregue o model se necessário
+		if ($this->Empresa_model->excluir($id)) {
+			$this->session->set_flashdata('success', 'Vaga excluída com sucesso.');
+		} else {
+			$this->session->set_flashdata('error', 'Erro ao excluir a vaga.');
+		}
+		redirect('empresa/lista_vagas'); // Redireciona para a lista de vagas
+	}
+	
+	
+
 }

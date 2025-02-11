@@ -61,5 +61,9 @@ class Empresa_model extends CI_Model {
 			// Insere os dados na tabela de vagas
 			return $this->db->insert('vagas', $dados);
 		}
+		public function excluir($id) {
+			return $this->db->delete('vagas', array('id' => $id));
+		}
+		
 
 }
