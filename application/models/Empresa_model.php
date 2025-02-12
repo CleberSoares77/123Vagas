@@ -64,6 +64,22 @@ class Empresa_model extends CI_Model {
 		public function excluir($id) {
 			return $this->db->delete('vagas', array('id' => $id));
 		}
-		
+
+		public function get_vagas() {
+			$query = $this->db->get('vagas');
+			return $query->result();
+		}
+		// Retorna uma vaga pelo ID
+		public function get_vaga_by_id($id) {
+			$this->db->where('id', $id);
+			$query = $this->db->get('vagas');
+			return $query->row(); // Retorna um único objeto
+		}
+	
+		// Atualiza a vaga com os dados fornecidos
+		public function update_vaga($id, $data) {
+			$this->db->where('id', $id);
+			return $this->db->update('vagas', $data);
+		}
 
 }

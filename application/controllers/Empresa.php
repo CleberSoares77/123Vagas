@@ -215,7 +215,63 @@ class Empresa extends CI_Controller
 		}
 		redirect('empresa/lista_vagas'); // Redireciona para a lista de vagas
 	}
-	
-	
+
+	 // Método para exibir o formulário de edição de uma vaga
+	 public function editar_vaga($id = null) {
+        if ($id === null) {
+            show_error('ID da vaga não foi fornecido.');
+            return;
+        }
+        
+        $vaga = $this->Empresa_model->get_vaga_by_id($id);
+        if (!$vaga) {
+            $this->session->set_flashdata('error', 'Vaga não encontrada.');
+            redirect('empresa/lista_vagas');
+            return;
+        }
+        
+        $data['vaga'] = $vaga;
+        $this->load->view('empresa/editar_vaga', $data);
+    }
+
+    // Método para atualizar os dados da vaga
+    public function update_vaga($id) {
+        if ($this->input->server('REQUEST_METHOD') === 'POST') {
+            // Recebe os dados do formulário
+            $data = array(
+                'nome'      => $this->input->post('nome'),
+                'descricao' => $this->input->post('descricao')
+            );
+            
+            // Se houver um novo arquivo enviado, processa o upload
+            if (!empty($_FILES['imagem']['name'])) {
+                $config['upload_path']   = './uploads/';
+                $config['allowed_types'] = 'jpg|jpeg|png|gif';
+                $config['max_size']      = 2048;
+                $config['file_name']     = time() . '_' . $_FILES['imagem']['name'];
+                
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('imagem')) {
+                    $upload_data = $this->upload->data();
+                    $data['imagem'] = 'uploads/' . $upload_data['file_name'];
+                } else {
+                    $this->session->set_flashdata('error', $this->upload->display_errors());
+                    redirect('empresa/editar_vaga/'.$id);
+                    return;
+                }
+            }
+            
+            // Atualiza a vaga no banco de dados
+            if ($this->Empresa_model->update_vaga($id, $data)) {
+                $this->session->set_flashdata('success', 'Vaga atualizada com sucesso!');
+                redirect('empresa/lista_vagas');
+            } else {
+                $this->session->set_flashdata('error', 'Erro ao atualizar a vaga.');
+                redirect('empresa/editar_vaga/'.$id);
+            }
+        } else {
+            redirect('empresa/editar_vaga/'.$id);
+        }
+    }
 
 }
