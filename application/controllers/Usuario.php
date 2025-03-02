@@ -39,58 +39,54 @@ class Usuario extends CI_Controller
 	public function esqueceu_senha()
 	{
 
-
 		$this->load->view('esqueceu_senha');
 	}
 
 	public function recuperar_senha()
-	{
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			// Lógica para recuperar a senha e obter o email do usuário
-			$email = $this->input->post('email'); // Supondo que o email foi recuperado
+{
+    $this->load->library('form_validation');
 
-			// Verifique se o email está correto e envie o email de recuperação
-			if ($email != '') {
-				// Gerar um token único para o usuário
-				$token = bin2hex(random_bytes(16)); // Gera um token de 32 caracteres
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 
-				// Salvar o token no banco de dados junto com o email e a data de expiração (opcional)
-				$this->Usuario_model->salvarTokenRedefinicaoSenha($email, $token);
+    if ($this->form_validation->run()) {
+        $email = $this->input->post('email');
+        
+        // Consulta o banco de dados para verificar se o e-mail existe
+        $usuario = $this->db->get_where('cadastro_usuario', ['email' => $email])->row();
 
-				// Construir o link de redefinição de senha
-				$linkRedefinicao = base_url('usuario/alterar_senha') . '?email=' . urlencode($email) . '&token=' . urlencode($token);
+        if ($usuario) {
+            // Salva o e-mail na sessão antes de redirecionar
+            $this->session->set_flashdata('email', $email);
+            redirect('usuario/alterar_senha'); 
+            return;
+        } else {
+            // Exibe erro se o e-mail não for encontrado
+			$this->template->load('template', 'error');
+        }
+    }
 
-				// Construir o email
-				$to = $email;
-				$subject = "Recuperação de Senha";
-				$message = "Olá,<br><br>Você solicitou a recuperação de senha. Clique no link abaixo para redefinir sua senha:<br><br><a href=\"$linkRedefinicao\">Redefinir Senha</a><br><br>Atenciosamente,<br>Equipe do Sistema";
-
-				// Cabeçalho do email
-				$header = "From: clebersoares749@gmail.com \r\n";
-				$header .= "Content-Type: text/html; charset=UTF-8\r\n"; // Definindo o tipo de conteúdo como HTML
-
-				// Envio do email de recuperação de senha
-				$result = mail($to, $subject, $message, $header);
-
-				// Verifica se o email foi enviado com sucesso
-				if ($result) {
-					echo 'Email de recuperação de senha enviado com sucesso';
-				} else {
-					echo 'Ocorreu um erro ao enviar o email de recuperação de senha';
-				}
-			} else {
-				echo 'Email não fornecido para recuperação de senha';
-			}
-		}
-
-		$this->load->view('recuperar_senha');
-	}
+    // Recarrega a view caso a validação falhe
+    $this->load->view('recuperar_senha');
+}
 
 
 	public function alterar_senha()
 	{
-		$this->load->view('alterar_senha');
+		// Tenta recuperar o e-mail armazenado na sessão
+		$email = $this->session->flashdata('email');
+	
+		// Se o e-mail não estiver na sessão, evita o redirecionamento em excesso
+		if (!$email) {
+			$this->session->set_flashdata('error', 'Acesso inválido. Tente novamente.');
+			redirect('usuario/recuperar_senha'); 
+			return;
+		}
+	
+		// Carrega a view e envia o e-mail como variável
+		$this->load->view('alterar_senha', ['email' => $email]);
 	}
+	
+	
 
 	public function atualizarSenha()
 	{

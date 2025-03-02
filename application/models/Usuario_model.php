@@ -102,6 +102,11 @@ class Usuario_model extends CI_Model
 		return $this->db->get('vagas')->result();
 	}
 	
+	public function buscar_por_email($email)
+{
+    return $this->db->where('email', $email)->get('cadastro_usuario')->row();
+}
+
 	
   
 }
