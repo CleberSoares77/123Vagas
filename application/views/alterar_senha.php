@@ -1,96 +1,71 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Senha</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #007bff, #6610f2);
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 50px;
         }
-
         .container {
             background: white;
-            padding: 30px;
+            width: 40%;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            text-align: center;
         }
-
-        h1 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        input[type="password"] {
-            width: 100%;
+        input {
+            width: 90%;
             padding: 10px;
-            margin: 8px 0;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 14px;
         }
-
         .btn {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            border: none;
+            background: #28a745;
             color: white;
-            font-size: 16px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border: none;
             cursor: pointer;
-            transition: 0.3s;
+            border-radius: 5px;
         }
-
-        .btn:hover {
-            background: #0056b3;
+        .error {
+            color: red;
+            font-weight: bold;
         }
-
-        .back-link {
-            display: block;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
+        .success {
+            color: green;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Alterar Senha</h1>
-        <p><strong>Email:</strong> <?php echo $email; ?></p>
-        
-        <form action="http://localhost/tcc/usuario/atualizar_senha" method="POST">
-            <input type="password" id="novaSenha" name="novaSenha" placeholder="Nova Senha" required>
-            <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirmar Senha" required>
-            <button type="submit" class="btn">Alterar Senha</button>
-        </form>
+        <h2>Alterar Senha</h2>
 
-        <a href="/tcc" class="back-link">Voltar</a>
+        <!-- Exibir mensagens de sucesso ou erro -->
+        <?php if ($this->session->flashdata('success')): ?>
+            <p class="success"><?php echo $this->session->flashdata('success'); ?></p>
+        <?php elseif ($this->session->flashdata('error')): ?>
+            <p class="error"><?php echo $this->session->flashdata('error'); ?></p>
+        <?php endif; ?>
+
+        <form action="<?php echo base_url('usuario/atualizar_senha'); ?>" method="POST">
+            <input type="hidden" name="email" value="<?php echo isset($email) ? $email : ''; ?>">
+
+            <label for="novaSenha">Nova Senha:</label>
+            <input type="password" id="novaSenha" name="novaSenha" required>
+
+            <label for="confirmarSenha">Confirmar Senha:</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+
+            <input type="submit" class="btn" value="Alterar Senha">
+        </form>
     </div>
 </body>
 </html>

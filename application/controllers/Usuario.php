@@ -267,34 +267,24 @@ class Usuario extends CI_Controller
 	}
 
 	public function atualizar_senha()
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = $this->input->post('email');
-        $novaSenha = $this->input->post('novaSenha');
-        $confirmarSenha = $this->input->post('confirmarSenha');
-		
-
-        if ($novaSenha === $confirmarSenha) {
-            // 🔹 Certifique-se de que está passando os argumentos corretamente
-            $resultado = $this->Usuario_model->redSenha($email, $novaSenha);
-
-            if ($resultado === "Senha atualizada com sucesso!") {
-                $this->session->set_flashdata('success', $resultado);
-                redirect('usuario/login');
-            } else {
-                $this->session->set_flashdata('error', $resultado);
-                redirect('usuario/alterar_senha');
-            }
-        } else {
-            $this->session->set_flashdata('error', 'As senhas não coincidem.');
-            redirect('usuario/alterar_senha');
-        }
-    } else {
-        show_error('Método inválido!', 405);
-    }
-}
-
-
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$email = $this->input->post('email');
+			$novaSenha = $this->input->post('novaSenha');
+	
+			// Chama o model para atualizar a senha
+			$resultado = $this->Usuario_model->redSenha($email, $novaSenha);
+	
+			if ($resultado === true) {
+				$this->session->set_flashdata('success', 'Senha alterada com sucesso! Faça login novamente.');
+				redirect('/'); // Redireciona para a página de login
+			} else {
+				$this->session->set_flashdata('error', 'Erro: Usuário não encontrado.');
+				redirect('usuario/alterar_senha');
+			}
+		}
+	}
 	
 	
 }
+

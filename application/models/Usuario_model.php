@@ -113,14 +113,16 @@ public function redSenha($email, $senhaNova)
     $query = $this->db->get('cadastro_usuario');
 
     if ($query->num_rows() > 0) {
-        $data = ['senha' => password_hash($senhaNova, PASSWORD_DEFAULT)];
+        $data = ['senha' => $senhaNova]; // Remove a criptografia da senha
         $this->db->where('email', $email);
         $this->db->update('cadastro_usuario', $data);
-        return "Senha atualizada com sucesso!";
+        return true; // Senha alterada com sucesso
     } else {
-        return "Erro: Usuário não encontrado.";
+        return false; // Usuário não encontrado
     }
 }
+
+
 
 
   
