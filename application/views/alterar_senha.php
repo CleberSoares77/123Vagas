@@ -84,7 +84,7 @@
         <h1>Alterar Senha</h1>
         <p><strong>Email:</strong> <?php echo $email; ?></p>
         
-        <form action="http://localhost/tcc/usuario/nova_senha" method="POST">
+        <form action="http://localhost/tcc/usuario/atualizar_senha" method="POST">
             <input type="password" id="novaSenha" name="novaSenha" placeholder="Nova Senha" required>
             <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirmar Senha" required>
             <button type="submit" class="btn">Alterar Senha</button>

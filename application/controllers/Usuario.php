@@ -43,7 +43,7 @@ class Usuario extends CI_Controller
 	}
 
 	public function recuperar_senha()
-{
+    {
     $this->load->library('form_validation');
 
     $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -67,8 +67,7 @@ class Usuario extends CI_Controller
 
     // Recarrega a view caso a validação falhe
     $this->load->view('recuperar_senha');
-}
-
+    }
 
 	public function alterar_senha()
 	{
@@ -85,34 +84,9 @@ class Usuario extends CI_Controller
 		// Carrega a view e envia o e-mail como variável
 		$this->load->view('alterar_senha', ['email' => $email]);
 	}
-	
-	
-
-	public function atualizarSenha()
-	{
-		// Verifique se o email e o token estão presentes na URL
-		$email = $this->input->get('email');
-		$token = $this->input->get('token');
-
-		if (!empty($email) && !empty($token)) {
-			// Verifique se o token é válido (exemplo simplificado)
-			$tokenValido = $this->Usuario_model->verificarTokenRedefinicaoSenha($email, $token);
-
-			if ($tokenValido) {
-				// Token válido, exiba a página de alteração de senha
-				$this->load->view('alterar_senha');
-			} else {
-				// Token inválido, redirecione para uma página de erro ou mensagem
-				redirect('usuario/token_invalido');
-			}
-		} else {
-			// Email ou token não fornecidos, redirecione para uma página de erro ou mensagem
-			redirect('usuario/token_invalido');
-		}
-	}
 
 	public function cadastro()
-{
+    {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = [
             'nome'      => $this->input->post('nome'),
@@ -169,9 +143,7 @@ class Usuario extends CI_Controller
     }
 
     $this->template->load('template', 'usuario/cadastro');
-}
-
-
+    }
 
 	public function editar($id)
 	{
@@ -282,4 +254,47 @@ class Usuario extends CI_Controller
 	{
 		$this->load->view('usuario/index_Home');
 	}
+
+	public function redSenha($id)
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$data['usuario'] = $this->Usuario_model->redSenha($id);
+	
+			$this->template->load('template', 'usuario', $data);
+		} else {
+			show_error('Método inválido!', 405);
+		}
+	}
+
+	public function atualizar_senha()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $email = $this->input->post('email');
+        $novaSenha = $this->input->post('novaSenha');
+        $confirmarSenha = $this->input->post('confirmarSenha');
+		
+
+        if ($novaSenha === $confirmarSenha) {
+            // 🔹 Certifique-se de que está passando os argumentos corretamente
+            $resultado = $this->Usuario_model->redSenha($email, $novaSenha);
+
+            if ($resultado === "Senha atualizada com sucesso!") {
+                $this->session->set_flashdata('success', $resultado);
+                redirect('usuario/login');
+            } else {
+                $this->session->set_flashdata('error', $resultado);
+                redirect('usuario/alterar_senha');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'As senhas não coincidem.');
+            redirect('usuario/alterar_senha');
+        }
+    } else {
+        show_error('Método inválido!', 405);
+    }
+}
+
+
+	
+	
 }

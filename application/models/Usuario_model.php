@@ -107,6 +107,21 @@ class Usuario_model extends CI_Model
     return $this->db->where('email', $email)->get('cadastro_usuario')->row();
 }
 
-	
+public function redSenha($email, $senhaNova)
+{
+    $this->db->where('email', $email);
+    $query = $this->db->get('cadastro_usuario');
+
+    if ($query->num_rows() > 0) {
+        $data = ['senha' => password_hash($senhaNova, PASSWORD_DEFAULT)];
+        $this->db->where('email', $email);
+        $this->db->update('cadastro_usuario', $data);
+        return "Senha atualizada com sucesso!";
+    } else {
+        return "Erro: Usuário não encontrado.";
+    }
+}
+
+
   
 }
