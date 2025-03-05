@@ -63,7 +63,7 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-
+ 
         .link {
             text-align: right; /* Alinha o link "Voltar" à direita */
             margin-top: 10px;
@@ -79,7 +79,7 @@
     
     <div class="container">
         <h1>Recuperação de Senha</h1>
-        <form action="/tcc/usuario/esqueceu_senha" method="POST">
+        <form action="/tcc/empresa/recuperar_senha_empresa" method="POST">
             <input type="email" name="email" placeholder="Digite seu endereço de e-mail" required>
             <br>
             <input type="submit" value="Enviar">

@@ -63,7 +63,7 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
-
+ 
         .link {
             text-align: right; /* Alinha o link "Voltar" à direita */
             margin-top: 10px;

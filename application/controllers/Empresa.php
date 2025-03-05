@@ -83,7 +83,7 @@ class Empresa extends CI_Controller
 				'senha' => $this->input->post('senha')
 			];
 
-			// Chame o método update do Usuario_model com dados e ID
+			// Chame o método update do Empresa_model com dados e ID
 			$this->Empresa_model->update_empresa($id, $data);
 
 			// Redirecione após a atualização bem-sucedida
@@ -272,6 +272,63 @@ class Empresa extends CI_Controller
         } else {
             redirect('empresa/editar_vaga/'.$id);
         }
+    }
+
+	public function redSenhaEmpresa($id)
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$data['empresa'] = $this->Empresa_model->redSenhaEmpresa($id);
+	
+			$this->template->load('template', 'empresa', $data);
+		} else {
+			show_error('Método inválido!', 405);
+		}
+	}
+
+	public function atualizar_senha_empresa()
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$email = $this->input->post('email');
+			$novaSenha = $this->input->post('novaSenha');
+	
+			// Chama o model para atualizar a senha
+			$resultado = $this->Empresa_model->redSenhaEmpresa($email, $novaSenha);
+	
+			if ($resultado === true) {
+				$this->session->set_flashdata('success', 'Senha alterada com sucesso! Faça login novamente.');
+				redirect('/'); // Redireciona para a página de login
+			} else {
+				$this->session->set_flashdata('error', 'Erro: Usuário não encontrado.');
+				redirect('empresa/alterar_senha_empresa');
+			}
+		}
+	}
+
+	public function recuperar_senha_empresa()
+    {
+    $this->load->library('form_validation');
+
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+
+    if ($this->form_validation->run()) {
+        $email = $this->input->post('email');
+        
+        // Consulta o banco de dados para verificar se o e-mail existe
+        $usuario = $this->db->get_where('cadastro_empresa', ['email' => $email])->row();
+
+        if ($usuario) {
+            // Salva o e-mail na sessão antes de redirecionar
+            $this->session->set_flashdata('email', $email);
+            redirect('usuario/alterar_senha_empresa'); 
+            return;
+        } else {
+            // Exibe erro se o e-mail não for encontrado
+			$this->template->load('template', 'error');
+        }
+    }
+
+    // Recarrega a view caso a validação falhe
+    $this->load->view('recuperar_senha_empresa');
     }
 
 }
