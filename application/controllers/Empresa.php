@@ -274,37 +274,7 @@ class Empresa extends CI_Controller
         }
     }
 
-	public function redSenhaEmpresa($id)
-	{
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$data['empresa'] = $this->Empresa_model->redSenhaEmpresa($id);
-	
-			$this->template->load('template', 'empresa', $data);
-		} else {
-			show_error('Método inválido!', 405);
-		}
-	}
-
-	public function atualizar_senha_empresa()
-	{
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$email = $this->input->post('email');
-			$novaSenha = $this->input->post('novaSenha');
-	
-			// Chama o model para atualizar a senha
-			$resultado = $this->Empresa_model->redSenhaEmpresa($email, $novaSenha);
-	
-			if ($resultado === true) {
-				$this->session->set_flashdata('success', 'Senha alterada com sucesso! Faça login novamente.');
-				redirect('/'); // Redireciona para a página de login
-			} else {
-				$this->session->set_flashdata('error', 'Erro: Usuário não encontrado.');
-				redirect('empresa/alterar_senha_empresa');
-			}
-		}
-	}
-
-	public function recuperar_senha_empresa()
+	public function recuperar_senha()
     {
     $this->load->library('form_validation');
 
@@ -314,12 +284,12 @@ class Empresa extends CI_Controller
         $email = $this->input->post('email');
         
         // Consulta o banco de dados para verificar se o e-mail existe
-        $usuario = $this->db->get_where('cadastro_empresa', ['email' => $email])->row();
+        $empresa = $this->db->get_where('cadastro_empresa', ['email' => $email])->row();
 
-        if ($usuario) {
+        if ($empresa) {
             // Salva o e-mail na sessão antes de redirecionar
             $this->session->set_flashdata('email', $email);
-            redirect('usuario/alterar_senha_empresa'); 
+            redirect('empresa/alterar_senha'); 
             return;
         } else {
             // Exibe erro se o e-mail não for encontrado
@@ -328,7 +298,42 @@ class Empresa extends CI_Controller
     }
 
     // Recarrega a view caso a validação falhe
-    $this->load->view('recuperar_senha_empresa');
+    $this->load->view('recuperar_senha');
     }
 
+    public function atualizar_senha()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $this->input->post('email');
+            $novaSenha = $this->input->post('novaSenha');
+
+            $this->load->model('Empresa_model');
+            $resultado = $this->Empresa_model->redSenha($email, $novaSenha);
+
+            if ($resultado) {
+                $this->session->set_flashdata('success', 'Senha alterada com sucesso! Faça login novamente.');
+                redirect('/');
+            } else {
+                $this->template->load('template', 'error');
+            }
+        }
+    }
+
+	public function alterar_senha()
+	{
+		// Tenta recuperar o e-mail armazenado na sessão
+		$email = $this->session->flashdata('email');
+	
+		// Se o e-mail não estiver na sessão, evita o redirecionamento em excesso
+		if (!$email) {
+			$this->session->set_flashdata('error', 'Acesso inválido. Tente novamente.');
+			redirect('empresa/recuperar_senha'); 
+			return;
+		}
+	
+		// Carrega a view e envia o e-mail como variável
+		$this->load->view('empresa/alterar_senha', ['email' => $email]);
+	}
+
+	
 }

@@ -55,7 +55,7 @@
             <p class="error"><?php echo $this->session->flashdata('error'); ?></p>
         <?php endif; ?>
 
-        <form action="<?php echo base_url('usuario/atualizar_senha'); ?>" method="POST">
+        <form action="<?php echo base_url('empresa/atualizar_senha'); ?>" method="POST">
             <input type="hidden" name="email" value="<?php echo isset($email) ? $email : ''; ?>">
 
             <label for="novaSenha">Nova Senha:</label>

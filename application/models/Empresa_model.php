@@ -81,24 +81,23 @@ class Empresa_model extends CI_Model {
 			$this->db->where('id', $id);
 			return $this->db->update('vagas', $data);
 		}
-
-		public function buscar_por_email($email)
-		{
-			return $this->db->where('email', $email)->get('cadastro_empresa')->row();
-		}
-		
-		public function redSenhaEmpresa($email, $senhaNova)
+		public function verificarEmail($email)
 		{
 			$this->db->where('email', $email);
 			$query = $this->db->get('cadastro_empresa');
-		
-			if ($query->num_rows() > 0) {
-				$data = ['senha' => $senhaNova]; // Remove a criptografia da senha
+	
+			return ($query->num_rows() > 0);
+		}
+	
+		public function redSenha($email, $senhaNova)
+		{
+			if ($this->verificarEmail($email)) {
+				$data = ['senha' => $senhaNova]; // Sem criptografia
 				$this->db->where('email', $email);
 				$this->db->update('cadastro_empresa', $data);
 				return true; // Senha alterada com sucesso
 			} else {
-				return false; // Usuário não encontrado
+				return false; // Empresa não encontrada
 			}
 		}
 
