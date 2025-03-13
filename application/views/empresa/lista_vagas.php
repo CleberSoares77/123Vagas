@@ -67,7 +67,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <h2>Lista de Vagas</h2>
@@ -104,7 +103,6 @@
                   Editar
                 </a>
               </td>
-
             </tr>
           <?php endforeach; ?>
         <?php else: ?>
@@ -116,5 +114,4 @@
     </table>
   </div>
 </body>
-
 </html>
